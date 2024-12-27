@@ -12,7 +12,16 @@ class PostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('firm',)}
     summernote_fields = ('description',)
 
+@admin.register(Service_Type)
+class PostAdmin(SummernoteModelAdmin):
+    
+    list_display = ('service_type')
+   
+@admin.register(Pet_Type)
+class PostAdmin(SummernoteModelAdmin):
+    
+    list_display = ('pet_type')
 
 # Register your models here.
-admin.site.register(Service_Type)
-admin.site.register(Pet_Type)
+# admin.site.register(Service_Type)
+# admin.site.register(Pet_Type)
