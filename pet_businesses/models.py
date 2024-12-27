@@ -1,5 +1,22 @@
 from django.db import models
 
+class Service_Type (models.Model):
+    service_type = models.CharField(max_length=150)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.service_type}"
+
+
+class Pet_Type (models.Model):
+    pet_type = models.CharField(max_length=150)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.pet_type}"
+
 
 class Pet_Businesse (models.Model):
     contact_first_name = models.CharField(max_length=50)
@@ -19,53 +36,17 @@ class Pet_Businesse (models.Model):
     facebook = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     tiktok = models.URLField(blank=True, null=True)
+    business_pet_type = models.ManyToManyField(
+        Pet_Type, 
+        related_name="business_pet_types",
+    )
+    business_service_type = models.ManyToManyField(
+        Service_Type, 
+        related_name="business_service_types",
+    )
     description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.firm}"
-
-
-class Service_Type (models.Model):
-    pet_business = models.ForeignKey(
-        Pet_Businesse, 
-        on_delete=models.SET_NULL,  
-        related_name="business_service_types",
-        null=True
-    )
-    service_type = models.CharField(max_length=150)
-    date_created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.service_type} ({self.pet_business})"
-
-
-class Pet_Type (models.Model):
-    pet_business = models.ForeignKey(
-        Pet_Businesse, 
-        on_delete=models.SET_NULL,  
-        related_name="business_pet_types",
-        null=True
-    )
-    pet_type = models.CharField(max_length=150)
-    date_created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.pet_type} ({self.pet_business})"
-
-
-class Pet_Type (models.Model):
-     pet_business = models.ForeignKey(
-         Pet_Businesse,  
-         on_delete=models.SET_NULL,  
-         related_name="business_pet_types",
-         null=True)
-     pet_type = models.CharField(max_length=150)
-     date_created = models.DateTimeField(auto_now_add=True)
-     last_modified = models.DateTimeField(auto_now=True)
-
-     def __str__(self):
-        return f"{self.pet_type} ({self.pet_business})"
