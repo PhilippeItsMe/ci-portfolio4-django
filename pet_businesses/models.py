@@ -57,12 +57,6 @@ class Pet_Businesse (models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
-    # Generate slug from the firm if not set
-    def save(self, *args, **kwargs):
-        if not self.slug:  
-            self.slug = slugify(self.firm)
-        super(Pet_Businesse, self).save(*args, **kwargs)
-
     class Meta:
         ordering = ["-last_modified"]
 
