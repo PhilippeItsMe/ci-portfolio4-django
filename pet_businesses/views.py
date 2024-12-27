@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Pet_Businesse
 
 # Create your views here.
-def index(request):
-    return HttpResponse('pet_businesses page')
+class Business_List (generic.ListView):
+    queryset = Pet_Businesse.objects.all()
+    template_name = "pet_business_list.html"
+    

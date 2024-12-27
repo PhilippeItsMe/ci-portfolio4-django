@@ -64,7 +64,7 @@ class Pet_Businesse (models.Model):
         super(Pet_Businesse, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ["business_service_type"]
+        ordering = ["-last_modified"]
 
     def __str__(self):
         return f"{self.firm}"
