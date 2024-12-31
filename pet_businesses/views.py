@@ -39,6 +39,9 @@ def pet_business_detail(request, slug):
                 "pet_businesses/pet_business_detail.html",
                 {"pet_business_detail": post, "pet_businesses_form": Pet_Businesses_Form()},
             )
+        else:
+            print(pet_businesses_form.errors)  # Debugging: Print form errors to the console
+            messages.error(request, "There was an error with your submission.")
     else:
         pet_businesses_form = Pet_Businesses_Form()
 
