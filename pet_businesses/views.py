@@ -18,6 +18,6 @@ def pet_business_detail(request, slug):
     return render(
         request,
         "pet_businesses/pet_business_detail.html",
-        {"pet_business_detail": pet_business_detail},
+        {"pet_business_detail": post}
     )
 
