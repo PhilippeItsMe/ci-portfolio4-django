@@ -52,8 +52,10 @@ class Pet_Businesse (models.Model):
         related_name="business_service_types"
     )
     description = models.TextField()
+    approved = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
 
     class Meta:
         ordering = ["-last_modified"]
