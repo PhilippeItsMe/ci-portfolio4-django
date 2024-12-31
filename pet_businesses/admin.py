@@ -15,12 +15,12 @@ class PostAdmin(SummernoteModelAdmin):
 @admin.register(Service_Type)
 class PostAdmin(SummernoteModelAdmin):
     
-    list_display = ('service_type')
+    list_display = ('service_type',)
    
 @admin.register(Pet_Type)
 class PostAdmin(SummernoteModelAdmin):
     
-    list_display = ('pet_type')
+    list_display = ('pet_type',)
 
 # Register your models here.
 # admin.site.register(Service_Type)

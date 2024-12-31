@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 #----------- Pet Businesses Model -----------#
@@ -28,12 +29,9 @@ class Pet_Type (models.Model):
 
 
 class Pet_Businesse (models.Model):
-    contact_first_name = models.CharField(max_length=50)
-    contact_last_name = models.CharField(max_length=50)
-    contact_mobile = models.CharField(max_length=16)
-    contact_email = models.EmailField()
     firm = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pet_business_user", default=1)
     street = models.CharField(max_length=255)
     number = models.CharField(max_length=8)
     npa = models.CharField(max_length=13)
