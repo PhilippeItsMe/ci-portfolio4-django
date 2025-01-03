@@ -26,7 +26,7 @@ def pet_business_detail(request, slug):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.author = request.user  # Ensure the user is logged in
-            comment.post = post
+            comment.pet_businesse = post
             comment.save()
             messages.success(
                 request, "Comment submitted and awaiting approval."
