@@ -44,7 +44,7 @@
                 {% if user.is_authenticated %}
                 <h3>Create a pet business:</h3>
                 <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post" action="{% url 'submit_pet_business' %}">
+                <form id="commentForm" method="post">
                     {{ pet_businesses_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>

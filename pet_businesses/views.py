@@ -30,6 +30,7 @@ def pet_business_detail(request, slug):
         if pet_businesses_form.is_valid():
             pet_business = pet_businesses_form.save(commit=False)
             pet_business.author = request.user  # Ensure the user is logged in
+            pet_business.post = post
             pet_business.save()
             messages.success(
                 request, "Pet business submitted and awaiting approval."
