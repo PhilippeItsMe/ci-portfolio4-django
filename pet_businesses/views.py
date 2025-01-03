@@ -48,6 +48,6 @@ def pet_business_detail(request, slug):
         "pet_businesses/pet_business_detail.html",
         {
             "pet_business_detail": post,
-            "pet_businesses_form": comment_form,
+            "comment_form": comment_form,
         },
     )
