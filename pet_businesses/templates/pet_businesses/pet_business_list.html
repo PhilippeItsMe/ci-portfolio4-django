@@ -37,23 +37,6 @@
 
             </div>
         </div>
-
-        <!-- Creating New Pet Business -->
-        <div class="col-md-4 card mb-4 mt-3">
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                <h3>Create a pet business:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post">
-                    {{ pet_businesses_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% else %}
-                <p>Log in to create a pet business</p>
-                {% endif %}
-            </div>
-        </div>
     </div>
     {% if is_paginated %}
     <nav aria-label="Page navigation">

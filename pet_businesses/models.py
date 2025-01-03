@@ -62,3 +62,20 @@ class Pet_Businesse (models.Model):
 
     def __str__(self):
         return f"{self.firm}"
+
+
+#----------- Comment Model -----------#
+
+class Comment(models.Model):
+    pet_businesse = models.ForeignKey(Pet_Businesse, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    content = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["date_created"]
+
+    def __str__(self):
+        return f"Comment {self.content} by {self.author}"
