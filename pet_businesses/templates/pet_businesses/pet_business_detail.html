@@ -13,23 +13,10 @@
         </div>
         <div class="col-md-6">
             <img src="{% static 'images/defaultpetbusiness.jpg' %}" class="scale" alt="placeholder">
+            <p> Number of comments : {{ comment_count }} </p>
         </div>
     </div>
 </div>
-
-<!-- Displaying count of comments -->
-<div class="row">
-    <div class="col-12">
-        <strong class="text-secondary">
-            <i class="far fa-comments"></i> {{ comment_count }}
-        </strong>
-    </div>
-    <div class="col-12">
-        <hr>
-    </div>
-</div>
-
-<!-- Displaying comments -->
 
 <!-- Displaying Comments -->
 <div class="row">
@@ -81,8 +68,8 @@
     </div>
 </div>
 
-
-
-
-
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
