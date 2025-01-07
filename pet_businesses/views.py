@@ -44,7 +44,6 @@ def pet_business_detail(request, slug):
     else:
         comment_form = Comment_Form()
      
-
     return render(
         request,
         "pet_businesses/pet_business_detail.html",
