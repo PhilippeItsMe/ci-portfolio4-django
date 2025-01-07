@@ -79,3 +79,19 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.content} by {self.author}"
+    
+    
+#----------- Like Model -----------#
+
+class Like(models.Model):
+    pet_businesse = models.ForeignKey(Pet_Businesse, on_delete=models.CASCADE, related_name="likes")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liker")
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date_created']
+        unique_together = ['pet_businesse', 'author']
+
+    def __str__(self):
+        return f'{self. author} {self.pet_businesse}'

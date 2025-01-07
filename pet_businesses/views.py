@@ -103,3 +103,15 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
+
+
+# Like adding view
+
+
+
+
+# Like retrieving view
+
+
+
+

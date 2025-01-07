@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pet_Businesse, Service_Type, Pet_Type, Comment
+from .models import Pet_Businesse, Service_Type, Pet_Type, Comment, Like
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -26,6 +26,8 @@ class PostAdmin(SummernoteModelAdmin):
     
     list_display = ('pet_businesse', 'author', 'approved','date_created') 
 
-# Register your models here.
-# admin.site.register(Service_Type)
-# admin.site.register(Pet_Type)
+@admin.register(Like)
+class PostAdmin(SummernoteModelAdmin):
+    
+    list_display = ('pet_businesse', 'author') 
+    
