@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import Pet_Businesse,Comment
+from .models import Pet_Businesse,Comment, Like
 from .forms import Comment_Form
 
 
@@ -105,12 +105,18 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
 
 
-# Like adding view
+# Like adding or retriewin view
 
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Pet_Businesse, id=post_id)
+    like, created = Like.objects.get_or_create(post=post, user=request.user)
 
+    if not created:  # If the Like already exist, we retrive it
+        like.delete()
 
+    return redirect('pet_business_detail', post_id=post.id)
 
-# Like retrieving view
 
 
 
