@@ -20,12 +20,14 @@ class Business_List(generic.ListView):
 def pet_business_detail(request, slug):
     
     post = get_object_or_404(Pet_Businesse.objects.filter(approved=True), slug=slug)
+    comments = post.comments.all().order_by("-date_created")
+    comment_count = post.comments.filter(approved=True).count()
 
-    if request.method == "POST":
+    if request.method == "POST": # To create a comment
         comment_form = Comment_Form(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.author = request.user  # Ensure the user is logged in
+            comment.author = request.user  # To ensure the user is logged in
             comment.pet_businesse = post
             comment.save()
             messages.success(
@@ -34,7 +36,7 @@ def pet_business_detail(request, slug):
             return render(
                 request,
                 "pet_businesses/pet_business_detail.html",
-                {"pet_business_detail": post, "comment_form": Comment_Form()},
+                {"pet_business_detail": post, "comment_count": comment_count,"comment_form": Comment_Form()},
             )
         else:
             print(comment_form.errors)  # Debugging: Print form errors to the console
