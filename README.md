@@ -51,6 +51,10 @@ Bug 2
 Issue : Impossible to pass the pet_business attribute to the pet_business-detail.html
 Solution : Adding post object to his view {"pet_business_detail": post}
 
+Bug 3 
+Issue : Impossible to edit or delete comments
+Solution : Fine tuning the views with introducing the wright source model and destination template pet_business_detail
+
 ### Testing
 
 

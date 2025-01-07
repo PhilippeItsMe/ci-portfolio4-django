@@ -45,7 +45,6 @@ def pet_business_detail(request, slug):
                 {"pet_business_detail": post, "comment_count": comment_count,"comment_form": Comment_Form()},
             )
         else:
-            print(comment_form.errors)  # Debugging: Print form errors to the console
             messages.error(request, "There was an error with your submission.")
     else:
         comment_form = Comment_Form()
@@ -61,6 +60,7 @@ def pet_business_detail(request, slug):
         },
     )
 
+
 # Comment editing view
 
 def comment_edit(request, slug, comment_id):
@@ -69,7 +69,7 @@ def comment_edit(request, slug, comment_id):
     """
     if request.method == "POST":
 
-        queryset = Comment.objects.filter(approved=True)
+        queryset = Pet_Businesse.objects.filter(approved=True)
         post = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = Comment_Form(data=request.POST, instance=comment)
@@ -85,3 +85,21 @@ def comment_edit(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
 
+
+# Comment deleting view
+
+def comment_delete(request, slug, comment_id):
+    """
+    view to delete comment
+    """
+    queryset = Pet_Businesse.objects.filter(approved=True)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
