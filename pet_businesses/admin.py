@@ -5,29 +5,42 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(PetBusinesse)
 class PostAdmin(SummernoteModelAdmin):
-
-    list_display = ('firm', 'locality','approved', 'date_created')
+    """
+    To display pet businesses in admin.
+    """
+    list_display = ('firm', 'locality', 'approved', 'date_created')
     search_fields = ['firm', 'locality']
     prepopulated_fields = {'slug': ('firm',)}
     summernote_fields = ('description',)
 
+
 @admin.register(ServiceType)
 class PostAdmin(SummernoteModelAdmin):
-    
+    """
+    To display service types in admin.
+    """
     list_display = ('service_type', 'date_created')
-   
+
+
 @admin.register(PetType)
 class PostAdmin(SummernoteModelAdmin):
-    
-    list_display = ('pet_type','date_created')
+    """
+    To display pet types in admins
+    """
+    list_display = ('pet_type', 'date_created')
+
 
 @admin.register(Comment)
 class PostAdmin(SummernoteModelAdmin):
-    
-    list_display = ('pet_businesse', 'author', 'approved','date_created') 
+    """
+    To display comments in admins
+    """
+    list_display = ('pet_businesse', 'author', 'approved', 'date_created')
+
 
 @admin.register(Like)
 class PostAdmin(SummernoteModelAdmin):
-    
-    list_display = ('pet_businesse', 'author') 
-    
+    """
+    To display likes in admin.
+    """
+    list_display = ('pet_businesse', 'author')
