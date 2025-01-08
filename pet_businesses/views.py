@@ -26,8 +26,12 @@ def pet_business_detail(request, slug):
     view to render business details
     """
     post = get_object_or_404(Pet_Businesse.objects.filter(approved=True), slug=slug)
+    
     comments = post.comments.all().order_by("-date_created")
     comment_count = post.comments.filter(approved=True).count()
+
+    likes_count = post.likes.count()
+    has_liked = post.likes.filter(author=request.user).exists() if request.user.is_authenticated else False
 
     if request.method == "POST": # To create a comment
         comment_form = Comment_Form(data=request.POST)
@@ -57,6 +61,8 @@ def pet_business_detail(request, slug):
             "comment_form": comment_form,
             "comments": comments,
             "comment_count": comment_count,
+            "likes_count": likes_count,
+            "has_liked": has_liked,
         },
     )
 
@@ -105,17 +111,17 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
 
 
-# Like adding or retriewin view
+# Like adding or retriewing view
 
 @login_required
-def like_post(request, post_id):
-    post = get_object_or_404(Pet_Businesse, id=post_id)
-    like, created = Like.objects.get_or_create(post=post, user=request.user)
+def like_post(request, pet_businesse_id):
+    pet_business = get_object_or_404(Pet_Businesse, id=pet_businesse_id)
+    like, created = Like.objects.get_or_create(pet_businesse=pet_business, author=request.user)
 
-    if not created:  # If the Like already exist, we retrive it
+    if not created:  # If the Like already exists, delete it (toggle)
         like.delete()
 
-    return redirect('pet_business_detail', post_id=post.id)
+    return redirect('pet_business_detail', slug=pet_business.slug)
 
 
 

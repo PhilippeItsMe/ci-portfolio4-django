@@ -13,7 +13,24 @@
     </div>
     <div class="col-md-6">
         <img src="{% static 'images/defaultpetbusiness.jpg' %}" class="scale" alt="placeholder">
+        <!-- Comments count -->
         <p> Number of comments : {{ comment_count }} </p>
+        <!-- Likes count -->
+        <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+            {% if has_liked %}
+            <button type="submit">Unlike</button>
+            {% else %}
+            <button type="submit">Like</button>
+            {% endif %}
+            {% else %}
+            <p>Log in to create a pet business</p>
+            {% endif %}
+        </form>
+
+        <p>{{ pet_business_detail.likes.count }} likes</p>
+
     </div>
 </div>
 </div>
@@ -89,9 +106,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 {% endblock content %}
