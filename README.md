@@ -48,12 +48,16 @@ Issue : My page rendering pet businesses wasn't rending anything.
 Solution : Adding <context_object_name = "pet_business_list"> in my views.py to be able to pass it my template pet_business_list.html.
 
 Bug 2 
-Issue : Impossible to pass the pet_business attribute to the pet_business-detail.html
-Solution : Adding post object to his view {"pet_business_detail": post}
+Issue : Impossible to pass the pet_business attribute to the pet_business-detail.html.
+Solution : Adding post object to his view {"pet_business_detail": post}.
 
 Bug 3 
-Issue : Impossible to edit or delete comments
-Solution : Fine tuning the views with introducing the wright source model and destination template pet_business_detail
+Issue : Impossible to edit or delete comments.
+Solution : Fine tuning the views with introducing the wright source model and destination template pet_business_detail.
+
+Bug 4
+Issue : Had to change my class names from snake_case to CamelCase. While migrating the change, 4 dB where inversed and a inbetween dB in manytomany relationship erased.
+Solution : Create a brand new dB.
 
 ### Testing
 

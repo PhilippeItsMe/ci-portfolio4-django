@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import PetBusiness, Comment, Like
+from .models import PetBusinesse, Comment, Like
 from .forms import CommentForm
 
 
@@ -13,7 +13,7 @@ class BusinessList(generic.ListView):
     """
     View to render businesses list.
     """
-    queryset = PetBusiness.objects.all()
+    queryset = PetBusinesse.objects.all()
     template_name = "pet_businesses/pet_business_list.html"
     context_object_name = "pet_business_list"
     paginate_by = 3
@@ -25,7 +25,7 @@ def pet_business_detail(request, slug):
     """
     View to render business details.
     """
-    post = get_object_or_404(PetBusiness.objects.filter(approved=True),
+    post = get_object_or_404(PetBusinesse.objects.filter(approved=True),
                              slug=slug)
     comments = post.comments.all().order_by("-date_created")
     comment_count = post.comments.filter(approved=True).count()
@@ -76,7 +76,7 @@ def comment_edit(request, slug, comment_id):
     """
     if request.method == "POST":
 
-        queryset = PetBusiness.objects.filter(approved=True)
+        queryset = PetBusinesse.objects.filter(approved=True)
         post = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -101,7 +101,7 @@ def comment_delete(request, slug, comment_id):
     """
     View to delete comment.
     """
-    queryset = PetBusiness.objects.filter(approved=True)
+    queryset = PetBusinesse.objects.filter(approved=True)
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
@@ -120,7 +120,7 @@ def comment_delete(request, slug, comment_id):
 
 @login_required
 def like_post(request, pet_businesse_id):
-    pet_business = get_object_or_404(PetBusiness, id=pet_businesse_id)
+    pet_business = get_object_or_404(PetBusinesse, id=pet_businesse_id)
     like, created = Like.objects.get_or_create(pet_businesse=pet_business,
                                                author=request.user)
 
