@@ -43,12 +43,7 @@ def pet_business_detail(request, slug):
             messages.success(
                 request, "Comment submitted and awaiting approval."
             )
-            return render(
-                request,
-                "pet_businesses/pet_business_detail.html",
-                {"pet_business_detail": post, "comment_count": comment_count,
-                    "comment_form": CommentForm()},
-            )
+            return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
         else:
             messages.error(request, "There was an error with your submission.")
     else:
@@ -83,7 +78,7 @@ def comment_edit(request, slug, comment_id):
 
         if comment_form.is_valid() and comment.author == request.user:
             comment = comment_form.save(commit=False)
-            comment.post = post
+            comment.pet_business = post
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')

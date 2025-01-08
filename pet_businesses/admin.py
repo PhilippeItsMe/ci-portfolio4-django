@@ -43,4 +43,4 @@ class PostAdmin(SummernoteModelAdmin):
     """
     To display likes in admin.
     """
-    list_display = ('pet_businesse', 'author')
+    list_display = ('pet_business', 'author')

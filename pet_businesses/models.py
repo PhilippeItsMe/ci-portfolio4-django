@@ -110,7 +110,7 @@ class Like(models.Model):
     """
     Model for likes on pet businesses.
     """
-    pet_businesse = models.ForeignKey(PetBusiness,
+    pet_business = models.ForeignKey(PetBusiness,
                                       on_delete=models.CASCADE,
                                       related_name="likes")
     author = models.ForeignKey(User,
@@ -121,9 +121,9 @@ class Like(models.Model):
     class Meta:
         ordering = ['-date_created']
         constraints = [
-            models.UniqueConstraint(fields=['pet_businesse', 'author'],
+            models.UniqueConstraint(fields=['pet_business', 'author'],
                                     name='unique_like')
         ]
 
     def __str__(self):
-        return f'{self. author} {self.pet_businesse}'
+        return f'{self. author} {self.pet_business}'
