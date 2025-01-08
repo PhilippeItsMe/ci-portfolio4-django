@@ -5,30 +5,44 @@ from django.contrib.auth.models import User
 #----------- Pet Businesses Model -----------#
 
 class ServiceType (models.Model):
+    """
+    pet services types model
+    """
     service_type = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["service_type"]
+        verbose_name = "Service Type"
+        verbose_name_plural = "Service Types"
 
     def __str__(self):
         return f"{self.service_type}"
 
 
 class PetType (models.Model):
+    """
+    pet types model
+    """
     pet_type = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["pet_type"]
+        verbose_name = "Pet Type"
+        verbose_name_plural = "Pet Types"
+
 
     def __str__(self):
         return f"{self.pet_type}"
 
 
 class PetBusinesse (models.Model):
+    """
+    pet businesses model
+    """
     firm = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pet_business_user", default=1)
@@ -59,6 +73,8 @@ class PetBusinesse (models.Model):
 
     class Meta:
         ordering = ["-last_modified"]
+        verbose_name = "Pet Business"
+        verbose_name_plural = "Pet Businesses"
 
     def __str__(self):
         return f"{self.firm}"
@@ -67,6 +83,9 @@ class PetBusinesse (models.Model):
 #----------- Comment Model -----------#
 
 class Comment(models.Model):
+    """
+    comment model
+    """
     pet_businesse = models.ForeignKey(PetBusinesse, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     content = models.TextField()
@@ -84,13 +103,18 @@ class Comment(models.Model):
 #----------- Like Model -----------#
 
 class Like(models.Model):
+    """
+    like model
+    """
     pet_businesse = models.ForeignKey(PetBusinesse, on_delete=models.CASCADE, related_name="likes")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liker")
     date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-date_created']
-        unique_together = ['pet_businesse', 'author']
+        constraints = [
+            models.UniqueConstraint(fields=['pet_business', 'author'], name='unique_like')
+        ]
 
     def __str__(self):
         return f'{self. author} {self.pet_businesse}'
