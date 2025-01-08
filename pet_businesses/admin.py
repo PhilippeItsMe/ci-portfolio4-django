@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import PetBusinesse, ServiceType, PetType, Comment, Like
+from .models import PetBusiness, ServiceType, PetType, Comment, Like
 from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(PetBusinesse)
+@admin.register(PetBusiness)
 class PostAdmin(SummernoteModelAdmin):
     """
     To display pet businesses in admin.

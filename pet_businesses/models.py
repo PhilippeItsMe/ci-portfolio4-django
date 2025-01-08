@@ -38,7 +38,7 @@ class PetType (models.Model):
         return f"{self.pet_type}"
 
 
-class PetBusinesse (models.Model):
+class PetBusiness (models.Model):
     """
     Model representing a pet business with details such as address,
     contact information, and services offered.
@@ -86,7 +86,7 @@ class Comment(models.Model):
     """
     Model for comments on pet businesses.
     """
-    pet_businesse = models.ForeignKey(PetBusinesse,
+    pet_businesse = models.ForeignKey(PetBusiness,
                                       on_delete=models.CASCADE,
                                       related_name="comments")
     author = models.ForeignKey(User,
@@ -110,7 +110,7 @@ class Like(models.Model):
     """
     Model for likes on pet businesses.
     """
-    pet_businesse = models.ForeignKey(PetBusinesse,
+    pet_businesse = models.ForeignKey(PetBusiness,
                                       on_delete=models.CASCADE,
                                       related_name="likes")
     author = models.ForeignKey(User,
