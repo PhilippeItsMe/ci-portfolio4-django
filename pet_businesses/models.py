@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 #----------- Pet Businesses Model -----------#
 
-class Service_Type (models.Model):
+class ServiceType (models.Model):
     service_type = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -16,7 +16,7 @@ class Service_Type (models.Model):
         return f"{self.service_type}"
 
 
-class Pet_Type (models.Model):
+class PetType (models.Model):
     pet_type = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -28,7 +28,7 @@ class Pet_Type (models.Model):
         return f"{self.pet_type}"
 
 
-class Pet_Businesse (models.Model):
+class PetBusinesse (models.Model):
     firm = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pet_business_user", default=1)
@@ -44,11 +44,11 @@ class Pet_Businesse (models.Model):
     instagram = models.URLField(blank=True, null=True)
     tiktok = models.URLField(blank=True, null=True)
     business_pet_type = models.ManyToManyField(
-        Pet_Type, 
+        PetType, 
         related_name="business_pet_types"
     )
     business_service_type = models.ManyToManyField(
-        Service_Type, 
+        ServiceType, 
         related_name="business_service_types"
     )
     description = models.TextField()
@@ -67,7 +67,7 @@ class Pet_Businesse (models.Model):
 #----------- Comment Model -----------#
 
 class Comment(models.Model):
-    pet_businesse = models.ForeignKey(Pet_Businesse, on_delete=models.CASCADE, related_name="comments")
+    pet_businesse = models.ForeignKey(PetBusinesse, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
@@ -84,7 +84,7 @@ class Comment(models.Model):
 #----------- Like Model -----------#
 
 class Like(models.Model):
-    pet_businesse = models.ForeignKey(Pet_Businesse, on_delete=models.CASCADE, related_name="likes")
+    pet_businesse = models.ForeignKey(PetBusinesse, on_delete=models.CASCADE, related_name="likes")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liker")
     date_created = models.DateTimeField(auto_now_add=True)
 

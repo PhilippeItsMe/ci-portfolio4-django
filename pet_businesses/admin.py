@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Pet_Businesse, Service_Type, Pet_Type, Comment, Like
+from .models import PetBusinesse, ServiceType, PetType, Comment, Like
 from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(Pet_Businesse)
+@admin.register(PetBusinesse)
 class PostAdmin(SummernoteModelAdmin):
 
     list_display = ('firm', 'locality','approved', 'date_created')
@@ -11,12 +11,12 @@ class PostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('firm',)}
     summernote_fields = ('description',)
 
-@admin.register(Service_Type)
+@admin.register(ServiceType)
 class PostAdmin(SummernoteModelAdmin):
     
     list_display = ('service_type', 'date_created')
    
-@admin.register(Pet_Type)
+@admin.register(PetType)
 class PostAdmin(SummernoteModelAdmin):
     
     list_display = ('pet_type','date_created')

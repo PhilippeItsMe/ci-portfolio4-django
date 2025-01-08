@@ -3,17 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import Pet_Businesse,Comment, Like
-from .forms import Comment_Form
+from .models import PetBusinesse,Comment, Like
+from .forms import CommentForm
 
 
 # Business list view
 
-class Business_List(generic.ListView):
+class BusinessList(generic.ListView):
     """
     view to render businesses list
     """
-    queryset = Pet_Businesse.objects.all()
+    queryset = PetBusinesse.objects.all()
     template_name = "pet_businesses/pet_business_list.html"
     context_object_name = "pet_business_list"
     paginate_by = 3
@@ -25,7 +25,7 @@ def pet_business_detail(request, slug):
     """
     view to render business details
     """
-    post = get_object_or_404(Pet_Businesse.objects.filter(approved=True), slug=slug)
+    post = get_object_or_404(PetBusinesse.objects.filter(approved=True), slug=slug)
     
     comments = post.comments.all().order_by("-date_created")
     comment_count = post.comments.filter(approved=True).count()
@@ -34,7 +34,7 @@ def pet_business_detail(request, slug):
     has_liked = post.likes.filter(author=request.user).exists() if request.user.is_authenticated else False
 
     if request.method == "POST": # To create a comment
-        comment_form = Comment_Form(data=request.POST)
+        comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.author = request.user  # To ensure the user is logged in
@@ -46,12 +46,12 @@ def pet_business_detail(request, slug):
             return render(
                 request,
                 "pet_businesses/pet_business_detail.html",
-                {"pet_business_detail": post, "comment_count": comment_count,"comment_form": Comment_Form()},
+                {"pet_business_detail": post, "comment_count": comment_count,"comment_form": CommentForm()},
             )
         else:
             messages.error(request, "There was an error with your submission.")
     else:
-        comment_form = Comment_Form()
+        comment_form = CommentForm()
      
     return render(
         request,
@@ -75,10 +75,10 @@ def comment_edit(request, slug, comment_id):
     """
     if request.method == "POST":
 
-        queryset = Pet_Businesse.objects.filter(approved=True)
+        queryset = PetBusinesse.objects.filter(approved=True)
         post = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = Comment_Form(data=request.POST, instance=comment)
+        comment_form = CommentForm(data=request.POST, instance=comment)
 
         if comment_form.is_valid() and comment.author == request.user:
             comment = comment_form.save(commit=False)
@@ -98,7 +98,7 @@ def comment_delete(request, slug, comment_id):
     """
     view to delete comment
     """
-    queryset = Pet_Businesse.objects.filter(approved=True)
+    queryset = PetBusinesse.objects.filter(approved=True)
     post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
@@ -115,15 +115,10 @@ def comment_delete(request, slug, comment_id):
 
 @login_required
 def like_post(request, pet_businesse_id):
-    pet_business = get_object_or_404(Pet_Businesse, id=pet_businesse_id)
+    pet_business = get_object_or_404(PetBusinesse, id=pet_businesse_id)
     like, created = Like.objects.get_or_create(pet_businesse=pet_business, author=request.user)
 
     if not created:  # If the Like already exists, delete it (toggle)
         like.delete()
 
     return redirect('pet_business_detail', slug=pet_business.slug)
-
-
-
-
-

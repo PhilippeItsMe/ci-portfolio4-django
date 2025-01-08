@@ -16,6 +16,7 @@
         <!-- Comments count -->
         <p> Number of comments : {{ comment_count }} </p>
         <!-- Likes count -->
+        <p>{{ pet_business_detail.likes.count }} likes</p>
         <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
             {% csrf_token %}
             {% if user.is_authenticated %}
@@ -25,12 +26,9 @@
             <button type="submit">Like</button>
             {% endif %}
             {% else %}
-            <p>Log in to create a pet business</p>
+            <p>Log in to like it.</p>
             {% endif %}
         </form>
-
-        <p>{{ pet_business_detail.likes.count }} likes</p>
-
     </div>
 </div>
 </div>
@@ -81,7 +79,7 @@
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
         </form>
         {% else %}
-        <p>Log in to create a pet business</p>
+        <p>Log in to write a new comment.</p>
         {% endif %}
     </div>
 </div>
