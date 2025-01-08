@@ -113,7 +113,7 @@ class Like(models.Model):
     class Meta:
         ordering = ['-date_created']
         constraints = [
-            models.UniqueConstraint(fields=['pet_business', 'author'], name='unique_like')
+            models.UniqueConstraint(fields=['pet_businesse', 'author'], name='unique_like')
         ]
 
     def __str__(self):
