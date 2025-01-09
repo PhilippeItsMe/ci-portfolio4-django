@@ -132,6 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+# Use the custom signup form
+ACCOUNT_SIGNUP_FORM_CLASS = 'pet_businesses.forms.CustomSignupForm'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 

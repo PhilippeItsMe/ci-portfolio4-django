@@ -4,7 +4,7 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
-from .forms import CommentForm
+from .forms import CommentForm, UserRegistrationForm
 
 
 # Business list view
@@ -111,7 +111,7 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
 
 
-# Like adding or retriewing view
+# Like adding or retriewing like
 
 @login_required
 def like_post(request, pet_business_id):
@@ -123,3 +123,5 @@ def like_post(request, pet_business_id):
         like.delete()
 
     return redirect('pet_business_detail', slug=pet_business.slug)
+
+

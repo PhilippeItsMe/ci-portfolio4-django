@@ -1,5 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType # Refer to all models in the project
+from django.apps import apps # To refer to all apps in the project
+
+
+# Group & Permission Model
+
+def create_groups_and_permissions():
+    """
+    Model for groups and permissions
+    """
+    # Pet Owners Group
+    pet_owners_group, created = Group.objects.get_or_create(name='Pet Owners')
+    pet_model_comment = apps.get_model('pet_businesses', 'Comment')
+    pet_model_like = apps.get_model('pet_businesses', 'Like')
+    pet_permissions = Permission.objects.filter(content_type=ContentType.objects.get_for_model(pet_model_comment, pet_model_like))
+    pet_owners_group.permissions.set(pet_permissions)
+
+    # Business Owners Group
+    business_owners_group, created = Group.objects.get_or_create(name='Business Owners')
+    business_model = apps.get_model('pet_businesses', 'Business')  # Replace 'your_app' and 'Business'
+    business_permissions = Permission.objects.filter(content_type=ContentType.objects.get_for_model(business_model))
+    business_owners_group.permissions.set(business_permissions)
 
 
 # Pet Businesses Model
@@ -127,3 +149,4 @@ class Like(models.Model):
 
     def __str__(self):
         return f'{self. author} {self.pet_business}'
+    
