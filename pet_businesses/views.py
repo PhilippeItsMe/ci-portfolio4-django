@@ -1,10 +1,48 @@
+from django.contrib.auth.models import Group
+# from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
-from .forms import CommentForm, UserRegistrationForm
+from .forms import CommentForm, UserRegistrationForm, CustomSignupForm
+
+# Custom signup view with group assignement
+
+def custom_signup(request):
+    """
+    Custom signup view combining user registration and group assignment.
+    """
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        group_form = CustomSignupForm(request.POST)
+
+        if user_form.is_valid() and group_form.is_valid():
+            # Save the user
+            user = user_form.save(commit=False)
+            user.email = user_form.cleaned_data['email']  # Save the email field
+            user.save()
+
+            # Assign the user to the selected group
+            group_name = group_form.cleaned_data['group']
+            try:
+                group = Group.objects.get(name=group_name)
+                user.groups.add(group)
+                messages.success(request, "Account created successfully!")
+                return redirect('login')  # Redirect to login page
+            except Group.DoesNotExist:
+                messages.error(request, f"The group '{group_name}' does not exist.")
+        else:
+            messages.error(request, "There was an error with your registration.")
+    else:
+        user_form = UserRegistrationForm()
+        group_form = CustomSignupForm()
+
+    return render(request, 'registration/signup.html', {
+        'user_form': user_form,
+        'group_form': group_form,
+    })
 
 
 # Business list view
@@ -123,5 +161,3 @@ def like_post(request, pet_business_id):
         like.delete()
 
     return redirect('pet_business_detail', slug=pet_business.slug)
-
-
