@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
 from .forms import CommentForm, UserRegistrationForm, CustomSignupForm
+from .utils import group_required
+from django.core.exceptions import PermissionDenied
 
 # Custom signup view with group assignement
 
@@ -72,6 +74,8 @@ def pet_business_detail(request, slug):
     has_liked = post.likes.filter(author=request.user).exists() if request.user.is_authenticated else False
 
     if request.method == "POST":  # To create a comment
+        if not request.user.groups.filter(name="Pet Owners").exists():
+            raise PermissionDenied("You do not have permission to post comments.")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -103,6 +107,7 @@ def pet_business_detail(request, slug):
 
 # Comment editing view
 
+@group_required("Pet Owners")
 def comment_edit(request, slug, comment_id):
     """
     View to edit comments.
@@ -130,6 +135,7 @@ def comment_edit(request, slug, comment_id):
 
 # Comment deleting view
 
+@group_required("Pet Owners")
 def comment_delete(request, slug, comment_id):
     """
     View to delete comment.
@@ -151,7 +157,7 @@ def comment_delete(request, slug, comment_id):
 
 # Like adding or retriewing like
 
-@login_required
+@group_required("Pet Owners")
 def like_post(request, pet_business_id):
     pet_business = get_object_or_404(PetBusiness, id=pet_business_id)
     like, created = Like.objects.get_or_create(pet_business=pet_business,
