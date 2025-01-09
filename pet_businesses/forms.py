@@ -1,6 +1,5 @@
 from django import forms
 from .models import Comment
-from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User, Group
 
 
@@ -20,7 +19,7 @@ class CommentForm(forms.ModelForm):
 
 # Registration form
 
-class CustomSignupForm(SignupForm):
+class CustomSignupForm(forms.Form):
     group_choices = [
         ('Pet Owners', 'Pet Owners'),
         ('Business Owners', 'Business Owners'),
@@ -28,7 +27,8 @@ class CustomSignupForm(SignupForm):
     group = forms.ChoiceField(choices=group_choices, label="Sign Up as")
 
     def save(self, request):
-        user = super().save(request)
+        from allauth.account.forms import CustomSignupForm
+        user = CustomSignupForm().save(request)
         group_name = self.cleaned_data['group']
         group = Group.objects.get(name=group_name)
         user.groups.add(group)
