@@ -59,6 +59,10 @@ Bug 4
 Issue : Had to change my class names from snake_case to CamelCase. While migrating the change, 4 dB where inversed and a inbetween dB in manytomany relationship erased.
 Solution : Create a brand new dB.
 
+Bug 5
+Issue : Issue rendering My Pet Businesses in the menu to pet owners users only.
+Solution : Insert the conditional li inside the {% if user.is_authenticated %} tag.
+
 ### Testing
 
 
