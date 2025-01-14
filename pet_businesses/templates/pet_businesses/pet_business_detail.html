@@ -19,6 +19,7 @@
         <!-- Likes count -->
         <p>{{ pet_business_detail.likes.count }} likes</p>
         <!-- Like & unlike -->
+        {% if user|in_group:"Pet Owners" %}
         <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
             {% csrf_token %}
             {% if user.is_authenticated %}
@@ -31,6 +32,7 @@
             <p>Log in to like it.</p>
             {% endif %}
         </form>
+        {% endif %}
     </div>
 </div>
 </div>
@@ -82,7 +84,7 @@
             {% csrf_token %}
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
         </form>
-        {% else %}
+        {% elif not user.is_authenticated %}
         <p>Log in to write a new comment.</p>
         {% endif %}
     </div>
