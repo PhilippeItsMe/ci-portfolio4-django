@@ -30,7 +30,6 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 /**
 Initializes deletion functionality for the provided delete buttons.
- 
 - For each button in the `deleteButtons` collection:
 - Retrieves the associated comment's ID upon click.
 - Updates the `deleteConfirm` link's href to point to the deletion endpoint for the specific comment.

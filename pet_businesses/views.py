@@ -124,11 +124,11 @@ def comment_edit(request, slug, comment_id):
             comment.pet_business = post
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.add_message(request, messages.SUCCESS, 'Comment updated successfully.')
         else:
             messages.add_message(request,
                                  messages.ERROR,
-                                 'Error updating comment!')
+                                 'There was an error with your submission.')
 
     return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
 
@@ -169,12 +169,13 @@ def like_post(request, pet_business_id):
     return redirect('pet_business_detail', slug=pet_business.slug)
 
 
-# My businesses and business creating view
+# My businesses diplaying and business creating view
 
 @group_required("Business Owners")
 def pet_business_form(request):
+
     """
-    View to list pet businesses created by the logged-in user.
+    View to list pet businesses created by the logged-in user and create new one.
     """
     pet_businesses = PetBusiness.objects.filter(author=request.user, approved=True)
 
@@ -195,3 +196,31 @@ def pet_business_form(request):
         'pet_businesses': pet_businesses,'form': form,
     })
 
+# My businesses editing view
+
+@group_required("Business Owners")
+def pet_business_edit(request, slug, pet_business_id):
+    """
+    View to edit pet businesses created by the logged-in user.
+    """
+    pet_business = get_object_or_404(PetBusiness, id=pet_business_id, slug=slug, author=request.user)
+
+    if request.method == "POST":
+        # If POST
+        form = PetBusinessForm(data=request.POST, instance=pet_business)
+        if form.is_valid():
+            pet_business = form.save(commit=False)
+            pet_business.author = request.user  
+            pet_business.save()
+            messages.success(request, "Pet business updated successfully.")
+            return redirect('pet_business_form')  
+        else:
+            messages.error(request, "There was an error with your submission.")
+    else:
+        # If GET
+        form = PetBusinessForm(instance=pet_business)
+
+    return render(request, 'pet_businesses/pet_business_form.html', {
+        'form': form,
+        'pet_businesses': PetBusiness.objects.filter(author=request.user, approved=True),
+    })

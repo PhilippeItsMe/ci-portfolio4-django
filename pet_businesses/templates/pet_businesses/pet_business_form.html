@@ -21,7 +21,8 @@
             <td><a href="{% url 'pet_business_detail' business.slug %}">{{ business.firm }}</a></td>
             <td>{{ business.date_created }}</td>
             <td>
-                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'pet_business_edit' business.slug business.id %}"
+                    class="btn btn-warning btn-sm">Edit</a>
                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
@@ -34,11 +35,13 @@
 
 <!-- Form to create a new pet business -->
 <hr>
-<h3>Create a New Pet Business</h3>
+<h3>{% if form.instance.pk %}Edit Pet Business{% else %}Create a New Pet Business{% endif %}</h3>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Add Business</button>
+    <button type="submit" class="btn btn-primary">
+        {% if form.instance.pk %}Update Business{% else %}Add Business{% endif %}
+    </button>
 </form>
 
 <script src="{% static 'js/slug_creation.js' %}"></script>
