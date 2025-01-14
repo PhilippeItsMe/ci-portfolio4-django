@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load custom_tags %}
 
 <!-- Displaying pet business detail -->
 
@@ -17,6 +18,7 @@
         <p> Number of comments : {{ comment_count }} </p>
         <!-- Likes count -->
         <p>{{ pet_business_detail.likes.count }} likes</p>
+        <!-- Like & unlike -->
         <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
             {% csrf_token %}
             {% if user.is_authenticated %}
@@ -57,9 +59,11 @@
                     This comment is awaiting approval
                 </p>
                 {% endif %}
+                {% if user|in_group:"Pet Owners" %}
                 {% if user.is_authenticated and comment.author == user %}
                 <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
                 <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                {% endif %}
                 {% endif %}
             </div>
             {% endfor %}
@@ -70,7 +74,7 @@
 <!-- Writing new comments -->
 <div class="col-md-4 card mb-4 mt-3">
     <div class="card-body">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user|in_group:"Pet Owners" %}
         <h3>Write a comment:</h3>
         <p>Posting as: {{ user.username }}</p>
         <form id="commentForm" method="post">
