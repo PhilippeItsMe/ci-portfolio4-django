@@ -14,4 +14,5 @@ urlpatterns = [
          views.like_post, name='like_post'),
     path('signup/', views.custom_signup, name='signup'),
     path('<slug:slug>/edit/<int:pet_business_id>/', views.pet_business_edit, name='pet_business_edit'),
+    path('<slug:slug>/delete/<int:pet_business_id>/', views.pet_business_delete, name='pet_business_delete'),
 ]

@@ -23,7 +23,8 @@
             <td>
                 <a href="{% url 'pet_business_edit' business.slug business.id %}"
                     class="btn btn-warning btn-sm">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'pet_business_delete' business.slug business.id %}"
+                    class="btn btn-warning btn-sm">Delete</a>
             </td>
         </tr>
         {% endfor %}

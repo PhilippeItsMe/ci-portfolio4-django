@@ -224,3 +224,22 @@ def pet_business_edit(request, slug, pet_business_id):
         'form': form,
         'pet_businesses': PetBusiness.objects.filter(author=request.user, approved=True),
     })
+
+
+# My businesses deleting view
+
+@group_required("Business Owners")
+def pet_business_delete(request, slug, pet_business_id):
+    """
+    View to delete pet businesses created by the logged-in user.
+    """
+    pet_business = get_object_or_404(PetBusiness, id=pet_business_id, slug=slug, author=request.user)
+
+    if request.method == "POST":
+        pet_business.delete()
+        messages.success(request, "Pet business deleted successfully.")
+        return redirect('pet_business_form')  # Redirect to the form view
+    else:
+        messages.error(request, "There was an error with your request.")
+
+    return redirect('pet_business_form')
