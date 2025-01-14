@@ -39,10 +39,7 @@
                             href="{% url 'home' %}">Home</a>
                     </li>
                     {% if user.is_authenticated %}
-
                     {% if user|in_group:"Business Owners" %}
-
-
                     <li><a class="nav-link" href="{% url 'pet_business_form' %}">My Pet Businesses</a></li>
                     {% endif %}
 
@@ -59,14 +56,7 @@
                         <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
                             href="{% url 'account_login' %}">Login</a>
                     </li>
-
-
-
-                    {% if user|in_group:"Business Owners" %}
-                    <li><a href="{% url 'pet_business_form' %}">My Pet Businesses</a></li>
                     {% endif %}
-                    {% endif %}
-
                 </ul>
             </div>
         </div>
