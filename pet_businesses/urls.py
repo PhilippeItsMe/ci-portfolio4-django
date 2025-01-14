@@ -3,6 +3,7 @@ from django.urls import path
 
 urlpatterns = [
      path('', views.BusinessList.as_view(), name='home'),
+     path('pet_business_form/', views.pet_business_form, name='pet_business_form'),
      path('<slug:slug>/', views.pet_business_detail,
          name='pet_business_detail'),
      path('<slug:slug>/edit_comment/<int:comment_id>',
@@ -12,6 +13,4 @@ urlpatterns = [
      path('pet-business/<int:pet_business_id>/like/',
          views.like_post, name='like_post'),
     path('signup/', views.custom_signup, name='signup'),
-    path('pet_business_form/', views.pet_business_form,
-         name='pet_business_form'),
 ]

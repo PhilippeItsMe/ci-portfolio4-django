@@ -14,6 +14,7 @@ class PetBusinessForm(forms.ModelForm):
         model = PetBusiness
         fields = [
             'firm',
+            'slug',
             'street',
             'number',
             'npa',
@@ -30,8 +31,8 @@ class PetBusinessForm(forms.ModelForm):
             'description',
         ]
         widgets = {
-            'firm': forms.TextInput(attrs={'class': 'form-control'}),
-            'street': forms.TextInput(attrs={'class': 'form-control'}),
+            'firm': forms.TextInput(attrs={'class': 'form-control', 'id': 'firm-input'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'id': 'slug-input'}),
             'number': forms.TextInput(attrs={'class': 'form-control'}),
             'npa': forms.TextInput(attrs={'class': 'form-control'}),
             'locality': forms.TextInput(attrs={'class': 'form-control'}),
@@ -48,6 +49,7 @@ class PetBusinessForm(forms.ModelForm):
         }
         labels = {
             'firm': 'Business Name',
+            'slug': 'Page url',
             'street': 'Street Address',
             'number': 'Street Number',
             'npa': 'Postal Code',

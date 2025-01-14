@@ -59,7 +59,7 @@ class BusinessList(generic.ListView):
     paginate_by = 3
 
 
-# Business detail and comment creation view
+# Business detail and comment creating view
 
 def pet_business_detail(request, slug):
     """
@@ -169,15 +169,29 @@ def like_post(request, pet_business_id):
     return redirect('pet_business_detail', slug=pet_business.slug)
 
 
-# Pet business creating view
+# My businesses and business creating view
 
 @group_required("Business Owners")
 def pet_business_form(request):
     """
     View to list pet businesses created by the logged-in user.
     """
-    pet_businesses = PetBusiness.objects.filter(author=request.user)
+    pet_businesses = PetBusiness.objects.filter(author=request.user, approved=True)
+
+    if request.method == "POST":
+        form = PetBusinessForm(request.POST)
+        if form.is_valid():
+            pet_business = form.save(commit=False)
+            pet_business.author = request.user
+            pet_business.save()
+            messages.success(request, "Pet business submitted and awaiting approval.")
+            return redirect('pet_business_form')
+        else:
+            messages.error(request, "There was an error with your submission.")
+    else:
+            form = PetBusinessForm()
+
     return render(request, 'pet_businesses/pet_business_form.html', {
-        'pet_businesses': pet_businesses,
+        'pet_businesses': pet_businesses,'form': form,
     })
 
