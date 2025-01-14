@@ -39,6 +39,13 @@
                             href="{% url 'home' %}">Home</a>
                     </li>
                     {% if user.is_authenticated %}
+
+                    {% if user|in_group:"Business Owners" %}
+
+
+                    <li><a class="nav-link" href="{% url 'pet_business_form' %}">My Pet Businesses</a></li>
+                    {% endif %}
+
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                             href="{% url 'account_logout' %}">Logout</a>
@@ -52,21 +59,14 @@
                         <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
                             href="{% url 'account_login' %}">Login</a>
                     </li>
-                    {% if user|in_group:"Business Owners" %}
-                    <p>User is in the "Business Owners" group.</p>
-                    {% else %}
-                    <p>User is not in the "Business Owners" group.</p>
-                    {% endif %}
 
-                    <p>User: {{ user }}</p>
-                    <p>Is Authenticated: {{ user.is_authenticated }}</p>
-                    <p>In Group: {{ user|in_group:"Business Owners" }}</p>
 
 
                     {% if user|in_group:"Business Owners" %}
                     <li><a href="{% url 'pet_business_form' %}">My Pet Businesses</a></li>
                     {% endif %}
                     {% endif %}
+
                 </ul>
             </div>
         </div>
