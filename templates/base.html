@@ -63,7 +63,7 @@
                     <p>In Group: {{ user|in_group:"Business Owners" }}</p>
 
 
-                    {% if user.is_authenticated and user|in_group:"Business Owners" %}
+                    {% if user|in_group:"Business Owners" %}
                     <li><a href="{% url 'pet_business_form' %}">My Pet Businesses</a></li>
                     {% endif %}
                     {% endif %}

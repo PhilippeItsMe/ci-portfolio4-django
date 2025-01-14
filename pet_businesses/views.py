@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
 from .forms import CommentForm, UserRegistrationForm, CustomSignupForm, PetBusinessForm
-from .utils import group_required
+from pet_businesses.utils import group_required
 from django.core.exceptions import PermissionDenied
 
 
