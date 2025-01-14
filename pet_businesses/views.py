@@ -1,14 +1,14 @@
 from django.contrib.auth.models import Group
-# from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
-from .forms import CommentForm, UserRegistrationForm, CustomSignupForm
+from .forms import CommentForm, UserRegistrationForm, CustomSignupForm, PetBusinessForm
 from .utils import group_required
 from django.core.exceptions import PermissionDenied
+
 
 # Custom signup view with group assignement
 
@@ -59,11 +59,11 @@ class BusinessList(generic.ListView):
     paginate_by = 3
 
 
-# Business detail view
+# Business detail and comment creation view
 
 def pet_business_detail(request, slug):
     """
-    View to render business details.
+    View to render business details and create comments.
     """
     post = get_object_or_404(PetBusiness.objects.filter(approved=True),
                              slug=slug)
@@ -167,3 +167,17 @@ def like_post(request, pet_business_id):
         like.delete()
 
     return redirect('pet_business_detail', slug=pet_business.slug)
+
+
+# Pet business creating view
+
+@group_required("Business Owners")
+def pet_business_form(request):
+    """
+    View to list pet businesses created by the logged-in user.
+    """
+    pet_businesses = PetBusiness.objects.filter(author=request.user)
+    return render(request, 'pet_businesses/pet_business_form.html', {
+        'pet_businesses': pet_businesses,
+    })
+

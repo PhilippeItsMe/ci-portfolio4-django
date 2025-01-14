@@ -1,7 +1,68 @@
 from django import forms
-from .models import Comment
+from .models import PetBusiness, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
+
+
+# Pet business form
+
+class PetBusinessForm(forms.ModelForm):
+    """
+    Form for creating and updating PetBusiness instances.
+    """
+    class Meta:
+        model = PetBusiness
+        fields = [
+            'firm',
+            'street',
+            'number',
+            'npa',
+            'locality',
+            'phone',
+            'email',
+            'website',
+            'linkedin',
+            'facebook',
+            'instagram',
+            'tiktok',
+            'business_pet_type',
+            'business_service_type',
+            'description',
+        ]
+        widgets = {
+            'firm': forms.TextInput(attrs={'class': 'form-control'}),
+            'street': forms.TextInput(attrs={'class': 'form-control'}),
+            'number': forms.TextInput(attrs={'class': 'form-control'}),
+            'npa': forms.TextInput(attrs={'class': 'form-control'}),
+            'locality': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'website': forms.URLInput(attrs={'class': 'form-control'}),
+            'linkedin': forms.URLInput(attrs={'class': 'form-control'}),
+            'facebook': forms.URLInput(attrs={'class': 'form-control'}),
+            'instagram': forms.URLInput(attrs={'class': 'form-control'}),
+            'tiktok': forms.URLInput(attrs={'class': 'form-control'}),
+            'business_pet_type': forms.CheckboxSelectMultiple(),
+            'business_service_type': forms.CheckboxSelectMultiple(),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'firm': 'Business Name',
+            'street': 'Street Address',
+            'number': 'Street Number',
+            'npa': 'Postal Code',
+            'locality': 'City',
+            'phone': 'Phone Number',
+            'email': 'Email Address',
+            'website': 'Website',
+            'linkedin': 'LinkedIn Profile',
+            'facebook': 'Facebook Page',
+            'instagram': 'Instagram Profile',
+            'tiktok': 'TikTok Profile',
+            'business_pet_type': 'Pet Types Supported',
+            'business_service_type': 'Services Offered',
+            'description': 'Business Description',
+        }
 
 
 # Comments form
@@ -19,7 +80,6 @@ class CommentForm(forms.ModelForm):
 
 
 # Registration form
-
 
 class UserRegistrationForm(UserCreationForm):
     """

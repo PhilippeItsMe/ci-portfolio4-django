@@ -11,5 +11,7 @@ urlpatterns = [
          views.comment_delete, name='comment_delete'),
      path('pet-business/<int:pet_business_id>/like/',
          views.like_post, name='like_post'),
-    path('signup/', views.custom_signup, name='signup')
+    path('signup/', views.custom_signup, name='signup'),
+    path('pet-business-form/', views.pet_business_form,
+         name='pet_business_form'),
 ]
