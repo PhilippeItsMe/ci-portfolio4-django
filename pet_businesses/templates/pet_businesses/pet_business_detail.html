@@ -13,11 +13,11 @@
         <p> {{ pet_business_detail.description | safe }} </p>
     </div>
     <div class="col-md-6">
-        {% if "placeholder" in pet_business.featured_image.url %}
-        <img class="card-img-top" src="{% static 'images/defaultpetbusiness.jpg' %}" class="scale"
-            alt="placeholder image">
+        <!-- Conditional default picture diplay -->
+        {% if "placeholder" in pet_business_detail.featured_image.url %}
+        <img class="card-img-top scale" src="{% static 'images/defaultpetbusiness.jpg' %}" alt="placeholder image">
         {% else %}
-        <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
+        <img class="card-img-top" src="{{ pet_business_detail.featured_image.url }}" alt="{{ pet_business.title }}">
         {% endif %}
         <!-- Comments count -->
         <p> Number of comments : {{ comment_count }} </p>
