@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType # Refer to all models in the project
 from django.apps import apps # To refer to all apps in the project
+from cloudinary.models import CloudinaryField
 
 
 # Group & Permission Model
@@ -75,6 +76,7 @@ class PetBusiness (models.Model):
     locality = models.CharField(max_length=255)
     phone = models.CharField(max_length=16)
     email = models.EmailField()
+    featured_image = CloudinaryField('image', default='placeholder')
     website = models.URLField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
