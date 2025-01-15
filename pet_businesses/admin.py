@@ -13,6 +13,14 @@ class PostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('firm',)}
     summernote_fields = ('description',)
 
+    def save_model(self, request, obj, form, change):
+        """
+        Override save_model to handle Many-to-Many fields explicitly.
+        """
+        super().save_model(request, obj, form, change)
+        # Save Many-to-Many fields explicitly
+        form.save_m2m()
+
 
 @admin.register(ServiceType)
 class PostAdmin(SummernoteModelAdmin):

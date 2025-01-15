@@ -184,7 +184,8 @@ def pet_business_form(request):
         if form.is_valid():
             pet_business = form.save(commit=False)
             pet_business.author = request.user
-            pet_business.save()
+            pet_business.save() # Save the main instance
+            form.save_m2m()  # Save Many-to-Many relationships
             messages.success(request, "Pet business submitted and awaiting approval.")
             return redirect('pet_business_form')
         else:
@@ -212,6 +213,7 @@ def pet_business_edit(request, slug, pet_business_id):
             pet_business = form.save(commit=False)
             pet_business.author = request.user  
             pet_business.save()
+            form.save_m2m()  # Save Many-to-Many relationships
             messages.success(request, "Pet business updated successfully.")
             return redirect('pet_business_form')  
         else:
