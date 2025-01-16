@@ -149,7 +149,10 @@ Week 5: Fine-tuning and README documentation<br>
 
 ## Data Models
 
+The project's data model is structured as follows: it revolves around <span style="color:blue;">pet businesses</span>, <span style="color:green;">pet owners</span> (in green), and <span style="color:orange;">comments and likes</span> (in red). The sales-related section of the data model will be added after completing the corresponding lesson (LMS).
 
+
+<img src="static/readme/datamodel.webp">
 
 ## API Endpoints
 
