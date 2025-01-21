@@ -66,26 +66,31 @@
     <!-- Hero Section -->
     <div id="herosection">
         <div class="container">
-            <div class="row">
-                <div>
-                    <img>
-                    <img>
+            <div class="row align-items-center">
+                <!-- Image Column -->
+                <div class="relativeposition col-md-6 text-center order-2 order-md-1">
+                    <div>
+                        <img class="footpositon footprint mb-3" src="{% static 'images/dogfootprint.webp' %}"
+                            alt="dog foot print">
+                        <img class="dogposition heropet img-fluid" src="{% static 'images/heropet.webp' %}" alt="dog">
+                    </div>
                 </div>
-                <div>
-                    <p>Welcome</p>
-                    <h1>Au petit soin...</h1>
-                    <p>We love pet like you do.</p>
+                <!-- Text Column -->
+                <div class="col-md-6 text-center text-md-start order-1 order-md-1">
+                    <div>
+                        <p class="bold btneffect">Welcome</p>
+                        <h1>Au petit soin...</h1>
+                        <p class="bold">We love pets like you do.</p>
+                        <p>Discover all our care services, treats, and joyful moments designed to pamper your
+                            beloved pet.</p>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 
-
-
     <!-- displaying Django messages -->
-    <div class="container">
+    <div class=" container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for message in messages %}
