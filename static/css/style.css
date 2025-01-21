@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Quicksand:wght@300..700&display=swap');
+
+/*----- Setup -----*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*----- Colors -----*/
+
+:root {
+    /*Primary color*/
+    --yellow: #FCC737;
+    --orange: #F26B0F;
+
+    /*Secondary color*/
+    --blue: #81D4FA;
+    --darkgrey: #2B2929;
+    --offwhite: #fafafa;
+}
+
+/*----- Typo -----*/
+
+h1 {
+    font-family: "Chewy", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+h2 {
+    font-family: "Chewy", serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+p,
+a,
+li {
+    font-family: "Quicksand", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+/*----- Header -----*/
+
+.logo {
+    width: 300px;
+    height: auto;
+}
+
+#herosection {
+    background-color: var(--yellow);
+    width: 100%;
+    height: 200px;
+}
