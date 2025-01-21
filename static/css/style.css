@@ -8,6 +8,13 @@
     box-sizing: border-box;
 }
 
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 /*----- Colors -----*/
 
 :root {
@@ -35,7 +42,6 @@ h2 {
     font-weight: 400;
 }
 
-/*Used in login, logout and register templates*/
 h3 {
     font-family: "Chewy", serif;
     font-size: 2.5rem !important;
@@ -99,7 +105,8 @@ li {
 footer {
     margin-top: 6rem;
     background-color: var(--yellow);
-    height: 200px;
+    height: 100px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
