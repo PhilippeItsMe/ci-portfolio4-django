@@ -9,23 +9,26 @@
 
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
-            <div class="row">
+            <div class="row around-margin">
                 {% for pet_business in pet_business_list %}
-                <div class="col-md-4">
+                <div class="col-md-4 d-flex align-items-stretch">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ pet_business.author }}</p>
-                                </div>
+                        <div class="card-body text-center">
+                            <p>{{ pet_business.locality }}</p>
+                            <div class="image-wrapper">
+                                {% if "placeholder" in pet_business.featured_image.url %}
+                                <img class="round-image" src="{% static 'images/defaultpetbusiness.jpg' %}"
+                                    alt="placeholder image">
+                                {% else %}
+                                <img class="round-image" src="{{ pet_business.featured_image.url }}"
+                                    alt="{{ pet_business.title }}">
+                                {% endif %}
                             </div>
                             <a href="{% url 'pet_business_detail' pet_business.slug %}" class="post-link">
-                                <h2 class="card-title">{{ pet_business.firm }}</h2>
+                                <h2 id="title-color">{{ pet_business.firm }}</h2>
                             </a>
-
-                            <hr />
-                            <p class="card-text text-muted h6">{{ pet_business.date_created}}
-                            </p>
+                            <hr class="orange-hr">
+                            <p>{{ pet_business.description|truncatewords:20 }}</p>
                         </div>
                     </div>
                 </div>

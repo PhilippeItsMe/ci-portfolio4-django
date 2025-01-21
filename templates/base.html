@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <!-- displaying Django messages -->
+    <!-- Displaying Django messages -->
     <div class=" container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -113,13 +113,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Made by Code Instituters</p>
-        <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
-            <i class="fab fa-twitter-square ms-3"></i>
+    <footer>
+        <img class="footercat" src="{% static 'images/footercat.webp' %}" alt="cat">
+        <p class="m-0 text-center">Designed by Philippe Tschanun (Code Institue) | © 2025Passeport Chats & Chiens</p>
+
+        <!--
+        <p class="m-0 text-center">Follow us:
+            <i class="fab fa-facebook-square ms-3"></i>
             <i class="fab fa-instagram-square ms-3"></i>
             <i class="fab fa-youtube-square ms-3"></i>
         </p>
+        -->
     </footer>
 
     <!-- Bootstrap JS -->
@@ -129,6 +133,7 @@
 
     {% block extras %}
     {% endblock %}
+
 </body>
 
 </html>

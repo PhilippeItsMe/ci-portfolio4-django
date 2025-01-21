@@ -55,7 +55,6 @@ li {
     display: inline-block;
 }
 
-
 /*----- Header -----*/
 
 .logo {
@@ -87,7 +86,85 @@ li {
 
 }
 
-/*----- Responsivness -----*/
+/*----- Footer -----*/
+
+footer {
+    margin-top: 6rem;
+    background-color: var(--yellow);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.footercat {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 50px;
+    top: -222px;
+}
+
+
+
+
+
+
+/*----- Business list -----*/
+
+.card {
+    width: 100%;
+    border: 1px solid var(--orange);
+}
+
+.orange-hr {
+    color: var(--orange);
+    height: 1px;
+}
+
+.image-wrapper {
+    width: 106px;
+    height: 106px;
+    border: 3px solid var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin: 0 auto 2rem auto;
+}
+
+.round-image {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+}
+
+#title-color {
+    color: var(--orange);
+    font-size: 1.3rem;
+}
+
+.post-link {
+    text-decoration: none;
+}
+
+.page-link {
+    color: var(--orange);
+    border-radius: 10%;
+}
+
+.page-link:hover {
+    color: var(--offwhite);
+    background-color: var(--orange);
+    border-radius: 10%;
+}
+
+/*----- Header Responsivness -----*/
 
 @media screen and (max-width: 768px) {
     .btneffect {
