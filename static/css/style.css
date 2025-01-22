@@ -67,7 +67,7 @@ h3 {
 p,
 a,
 .btn,
-address,
+th,
 li {
     font-family: "Quicksand", serif;
     font-size: 1rem;
@@ -215,6 +215,20 @@ footer {
 .picto {
     width: 25px;
     margin-right: 10px;
+}
+
+.right-move-up {
+    display: flex;
+    align-items: start;
+}
+
+.right-move {
+    display: flex;
+    align-items: center;
+}
+
+.rounded-corner {
+    border-radius: 20px;
 }
 
 /*----- Header & Footer Responsivness -----*/

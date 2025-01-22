@@ -14,7 +14,7 @@
                             <p>{{ pet_business.locality }}</p>
                             <div class="image-wrapper">
                                 {% if "placeholder" in pet_business.featured_image.url %}
-                                <img class="round-image" src="{% static 'images/defaultpetbusiness.jpg' %}"
+                                <img class="round-image" src="{% static 'images/defaultpetbusiness.webp' %}"
                                     alt="placeholder image">
                                 {% else %}
                                 <img class="round-image" src="{{ pet_business.featured_image.url }}"

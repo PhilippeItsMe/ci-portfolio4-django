@@ -18,15 +18,24 @@
                 <div class="row spacing-up">
                     <div class="col-md-6">
                         <p class="fw-bold">Feel free to contact us</p>
-                        <p><img class="picto" src="{% static 'images/mapmarker' %}" alt="Address marker">
+                        <p class="right-move-up">
+                            <img class="picto" src="{% static 'images/mapmarker.svg' %}" alt="Address marker">
                             {{ pet_business_detail.firm }} <br>
                             {{ pet_business_detail.street }} {{ pet_business_detail.number }} <br>
                             {{ pet_business_detail.npa }} {{ pet_business_detail.locality }}
                         </p>
-                        <p><img class="picto" src="{% static 'images/mobile' %}" alt="Phone">
-                            {{ pet_business_detail.phone }}</p>
-                        <p><img class="picto" src="{% static 'images/at' %}" alt="Email">
-                            {{ pet_business_detail.email }}</p>
+                        <p class="right-move">
+                            <a class="link" href="tel:{{ pet_business_detail.phone }}">
+                                <img class="picto" src="{% static 'images/mobile.svg' %}"
+                                    alt="Phone">{{ pet_business_detail.phone }}
+                            </a>
+                        </p>
+                        <p class="right-move">
+                            <a class="link" href="mailto:{{ pet_business_detail.email }}">
+                                <img class="picto" src="{% static 'images/at.svg' %}"
+                                    alt="Email">{{ pet_business_detail.email }}
+                            </a>
+                        </p>
                     </div>
                     <div class="col-md-6">
                         <p class="fw-bold">Follow us on</p>
@@ -62,20 +71,24 @@
             </div>
 
             <div class="col-md-6">
+
                 <!-- Conditional default picture display -->
                 {% if pet_business_detail.featured_image and "placeholder" in pet_business_detail.featured_image.url %}
-                <img class="card-img-top scale" src="{% static 'images/defaultpetbusiness.jpg' %}"
+                <img class="card-img-top rounded-corner" src="{% static 'images/defaultpetbusiness.webp' %}"
                     alt="Default pet business image">
                 {% else %}
-                <img class="card-img-top" src="{{ pet_business_detail.featured_image.url }}"
+                <img class="card-img-top rounded-corner" src="{{ pet_business_detail.featured_image.url }}"
                     alt="{{ pet_business.title }}">
                 {% endif %}
 
-                <!-- Comments count -->
-                <p>Number of comments: {{ comment_count }}</p>
 
+
+                <!-- Comments count -->
+                <span><img class="picto" src="{% static 'images/comment.svg' %}" alt="Comment">:
+                    {{ comment_count }}</span>
                 <!-- Likes count -->
-                <p>{{ pet_business_detail.likes.count }} likes</p>
+                <span><img class="picto" src="{% static 'images/like.svg' %}" alt="Like">:
+                    {{ pet_business_detail.likes.count }}</span>
 
                 <!-- Like & Unlike Button -->
                 {% if user|in_group:"Pet Owners" %}
@@ -94,7 +107,6 @@
                 {% endif %}
             </div>
         </div>
-
 
         <!-- Displaying Comments -->
 
@@ -149,7 +161,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Delete confirmation modal -->
 
