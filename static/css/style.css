@@ -8,11 +8,15 @@
     box-sizing: border-box;
 }
 
-
 main {
+    /*Pushing footer to the page bottom*/
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.page-wrapper {
+    padding: 0 2rem;
 }
 
 /*----- Colors -----*/
@@ -26,6 +30,18 @@ main {
     --blue: #81D4FA;
     --darkgrey: #2B2929;
     --offwhite: #fafafa;
+}
+
+.offwhite {
+    color: var(--offwhite);
+}
+
+.bg-yellow {
+    background-color: var(--yellow);
+}
+
+.bg-orange {
+    background-color: var(--orange);
 }
 
 /*----- Typo -----*/
@@ -56,26 +72,21 @@ li {
     font-weight: 400;
 }
 
-/*----- Global Effects -----*/
-
 .bold {
     font-weight: 500;
     font-size: 1.1rem;
 }
 
-.btneffect {
-    margin-top: 1rem;
-    background-color: var(--offwhite);
-    padding: 5px 10px;
-    border-radius: 10px;
-    display: inline-block;
-}
+/*----- Links & Button -----*/
 
 .link {
     color: var(--orange);
-    text-decoration: none;
 }
 
+.link:hover {
+    color: var(--orange);
+    font-weight: 500;
+}
 
 .page-link {
     color: var(--orange);
@@ -86,6 +97,14 @@ li {
     color: var(--offwhite);
     background-color: var(--orange);
     border-radius: 10%;
+}
+
+.btneffect {
+    margin-top: 1rem;
+    background-color: var(--offwhite);
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 /*----- Header -----*/
@@ -177,6 +196,14 @@ footer {
     font-size: 1.3rem;
 }
 
+
+/*----- My Pet Services -----*/
+
+.spacing {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
 /*----- Header & Footer Responsivness -----*/
 
 @media screen and (max-width: 768px) {
@@ -191,5 +218,20 @@ footer {
         right: 50px;
         top: -148px;
     }
+}
 
+/*----- My Pet Services Responsivness -----*/
+
+@media screen and (max-width: 520px) {
+    .hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 330px) {
+
+    .btn-danger,
+    .btn-warning {
+        margin: 0.2rem 0rem;
+    }
 }

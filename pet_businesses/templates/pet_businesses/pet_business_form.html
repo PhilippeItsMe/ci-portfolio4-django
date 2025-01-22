@@ -3,71 +3,74 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<h3>My Pet Services</h3>
 
-<!-- Existing list of pet businesses -->
+<div class="page-wrapper">
+    <h3>My Pet Compagnies</h3>
 
-{% if pet_businesses %}
-<table class="card table">
-    <thead>
-        <tr>
-            <th>Commpagny Name</th>
-            <th>Created</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for business in pet_businesses %}
-        <tr>
-            <td><a href="{% url 'pet_business_detail' business.slug %}">{{ business.firm }}</a></td>
-            <td>{{ business.date_created }}</td>
-            <td>
-                <a href="{% url 'pet_business_edit' business.slug business.id %}"
-                    class="btn btn-warning btn-sm">Edit</a>
-                <!-- Delete button triggering confirmation modal -->
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                    data-href="{% url 'pet_business_delete' business.slug business.id %}">
-                    Delete
-                </button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>You have not created any pet businesses yet.</p>
-{% endif %}
+    <!-- Existing list of pet businesses -->
 
-<!-- Form to create a new pet business -->
+    {% if pet_businesses %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Compagny</th>
+                <th class="hidden">Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for business in pet_businesses %}
+            <tr>
+                <td><a class="link" href="{% url 'pet_business_detail' business.slug %}">{{ business.firm }}</a></td>
+                <td class="hidden">{{ business.date_created }}</td>
+                <td>
+                    <a href="{% url 'pet_business_edit' business.slug business.id %}"
+                        class="btn btn-sm btn-warning">Edit</a>
+                    <!-- Delete button triggering confirmation modal -->
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        data-href="{% url 'pet_business_delete' business.slug business.id %}">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You have not created any pet compagny yet.</p>
+    {% endif %}
 
-<hr>
-<h3>{% if form.instance.pk %}Edit Pet Business{% else %}Create a New Pet Business{% endif %}</h3>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">
-        {% if form.instance.pk %}Update Business{% else %}Add Business{% endif %}
-    </button>
-</form>
+    <!-- Form to create a new pet business -->
+    <h3 class="spacing">{% if form.instance.pk %}Edit Pet Business{% else %}Let's create a new pet compagny{% endif %}
+    </h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn page-link">
+            {% if form.instance.pk %}Update Compagny{% else %}Create Compagny{% endif %}
+        </button>
+    </form>
 
-<!-- Delete confirmation modal -->
+    <!-- Delete confirmation modal -->
 
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Pet Business?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this pet business?
-                This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <form method="POST" action="#" id="deleteConfirmForm">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Pet Business?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this pet business?
+                    This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" action="#" id="deleteConfirmForm">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
