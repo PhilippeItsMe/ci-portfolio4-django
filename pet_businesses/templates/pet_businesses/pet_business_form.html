@@ -3,15 +3,16 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<h2>My Pet Businesses</h2>
+<h3>My Pet Services</h3>
 
 <!-- Existing list of pet businesses -->
+
 {% if pet_businesses %}
-<table class="table">
+<table class="card table">
     <thead>
         <tr>
-            <th>Business Name</th>
-            <th>Date Created</th>
+            <th>Commpagny Name</th>
+            <th>Created</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -38,6 +39,7 @@
 {% endif %}
 
 <!-- Form to create a new pet business -->
+
 <hr>
 <h3>{% if form.instance.pk %}Edit Pet Business{% else %}Create a New Pet Business{% endif %}</h3>
 <form method="POST">
@@ -49,6 +51,7 @@
 </form>
 
 <!-- Delete confirmation modal -->
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
