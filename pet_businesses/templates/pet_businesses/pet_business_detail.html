@@ -4,121 +4,158 @@
 {% load crispy_forms_tags %}
 {% load custom_tags %}
 
-<!-- Displaying pet business detail -->
+<div class="page-wrapper">
 
-<div class="row">
-    <div class="col-md-6">
-        <h1 class="post-title">{{ pet_business_detail.firm }}</h1>
-        <p class="post-subtitle">{{ pet_business_detail.author }} | {{ pet_business_detail.date_created }}</p>
-        <p> {{ pet_business_detail.description | safe }} </p>
-    </div>
-    <div class="col-md-6">
-        <!-- Conditional default picture diplay -->
-        {% if "placeholder" in pet_business_detail.featured_image.url %}
-        <img class="card-img-top scale" src="{% static 'images/defaultpetbusiness.jpg' %}" alt="placeholder image">
-        {% else %}
-        <img class="card-img-top" src="{{ pet_business_detail.featured_image.url }}" alt="{{ pet_business.title }}">
-        {% endif %}
-        <!-- Comments count -->
-        <p> Number of comments : {{ comment_count }} </p>
-        <!-- Likes count -->
-        <p>{{ pet_business_detail.likes.count }} likes</p>
-        <!-- Like & unlike -->
-        {% if user|in_group:"Pet Owners" %}
-        <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
-            {% csrf_token %}
-            {% if user.is_authenticated %}
-            {% if has_liked %}
-            <button type="submit">Unlike</button>
-            {% else %}
-            <button type="submit">Like</button>
-            {% endif %}
-            {% else %}
-            <p>Log in to like it.</p>
-            {% endif %}
-        </form>
-        {% endif %}
-    </div>
-</div>
-</div>
+    <!-- Displaying pet business detail -->
+    <div class="container">
+        <div class="row">
+            <!-- Main content area -->
+            <div class="col-md-8">
+                <h2 class="post-title">{{ pet_business_detail.firm }}</h2>
+                <p class="post-subtitle">With us since {{ pet_business_detail.date_created }}</p>
+                <p>{{ pet_business_detail.description | safe }}</p>
 
-<!-- Displaying Comments -->
-
-<div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-            {% for comment in comments %}
-            <div class="p-2 comments
-            {% if not comment.approved and comment.author == user %}
-            faded{% elif not comment.approved %} d-none{% endif %}">
-                <p class="font-weight-bold">
-                    {{ comment.author }}
-                    <span class="font-weight-normal">
-                        {{ comment.created_on }}
-                    </span> wrote:
-                </p>
-                <div id="comment{{ comment.id }}">
-                    {{ comment.content | linebreaks }}
+                <div class="row">
+                    <div class="col-md-6 border">
+                        <p class="fw-bold">Feel free to contact us</p>
+                        <address>
+                            {{ pet_business_detail.firm }} <br>
+                            {{ pet_business_detail.street }} {{ pet_business_detail.number }} <br>
+                            {{ pet_business_detail.npa }} {{ pet_business_detail.locality }}
+                        </address>
+                    </div>
                 </div>
-                {% if not comment.approved and comment.author == user %}
-                <p class="approval">
-                    This comment is awaiting approval
-                </p>
+
+                <div class="row">
+                    <div class="col-md-6 border">
+                        <p class="fw-bold">Follow us on</p>
+                        <p>
+                            <a href="{{ pet_business_detail.website }}" target="_blank">Website</a> <br>
+                            <a href="{{ pet_business_detail.linkedin }}" target="_blank">LinkedIn</a> <br>
+                            <a href="{{ pet_business_detail.facebook }}" target="_blank">Facebook</a> <br>
+                            <a href="{{ pet_business_detail.instagram }}" target="_blank">Instagram</a> <br>
+                            <a href="{{ pet_business_detail.twitter }}" target="_blank">Twitter</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Conditional default picture display -->
+                {% if pet_business_detail.featured_image and "placeholder" in pet_business_detail.featured_image.url %}
+                <img class="card-img-top scale" src="{% static 'images/defaultpetbusiness.jpg' %}"
+                    alt="Default pet business image">
+                {% else %}
+                <img class="card-img-top" src="{{ pet_business_detail.featured_image.url }}"
+                    alt="{{ pet_business.title }}">
                 {% endif %}
+
+                <!-- Comments count -->
+                <p>Number of comments: {{ comment_count }}</p>
+
+                <!-- Likes count -->
+                <p>{{ pet_business_detail.likes.count }} likes</p>
+
+                <!-- Like & Unlike Button -->
                 {% if user|in_group:"Pet Owners" %}
-                {% if user.is_authenticated and comment.author == user %}
-                <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
-                <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                {% endif %}
+                <form action="{% url 'like_post' pet_business_detail.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                    {% if has_liked %}
+                    <button type="submit" class="btn btn-danger">Unlike</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary">Like</button>
+                    {% endif %}
+                    {% else %}
+                    <p>Log in to like it.</p>
+                    {% endif %}
+                </form>
                 {% endif %}
             </div>
-            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Displaying Comments -->
+
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>Comments:</h3>
+            <div class="card-body">
+                {% for comment in comments %}
+                <div class="p-2 comments
+                    {% if not comment.approved and comment.author == user %}
+                    faded{% elif not comment.approved %} d-none{% endif %}">
+                    <p class="font-weight-bold">
+                        {{ comment.author }}
+                        <span class="font-weight-normal">
+                            {{ comment.created_on }}
+                        </span> wrote:
+                    </p>
+                    <div id="comment{{ comment.id }}">
+                        {{ comment.content | linebreaks }}
+                    </div>
+                    {% if not comment.approved and comment.author == user %}
+                    <p class="approval">
+                        This comment is awaiting approval
+                    </p>
+                    {% endif %}
+                    {% if user|in_group:"Pet Owners" %}
+                    {% if user.is_authenticated and comment.author == user %}
+                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Writing new comments -->
+
+    <div class="col-md-4 card mb-4 mt-3">
+        <div class="card-body">
+            {% if user.is_authenticated and user|in_group:"Pet Owners" %}
+            <h3>Write a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="commentForm" method="post">
+                {{ comment_form | crispy }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+            </form>
+            {% elif not user.is_authenticated %}
+            <p>Log in to write a new comment.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Delete confirmation modal -->
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your comment?
+                    This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a id="deleteConfirm" href="#" class="btn
+                btn-danger">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Writing new comments -->
-<div class="col-md-4 card mb-4 mt-3">
-    <div class="card-body">
-        {% if user.is_authenticated and user|in_group:"Pet Owners" %}
-        <h3>Write a comment:</h3>
-        <p>Posting as: {{ user.username }}</p>
-        <form id="commentForm" method="post">
-            {{ comment_form | crispy }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-        </form>
-        {% elif not user.is_authenticated %}
-        <p>Log in to write a new comment.</p>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete your comment?
-                This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="deleteConfirm" href="#" class="btn
-          btn-danger">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script src="{% static 'js/comments.js' %}"></script>
 
 {% endblock content %}
 
-{% block extras %}
+<!--{% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
-{% endblock %}
+{% endblock %}-->

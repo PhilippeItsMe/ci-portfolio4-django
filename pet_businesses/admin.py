@@ -8,7 +8,7 @@ class PostAdmin(SummernoteModelAdmin):
     """
     To display pet businesses in admin.
     """
-    list_display = ('firm', 'locality', 'approved', 'date_created')
+    list_display = ('firm', 'locality', 'approved', 'last_modified', 'date_created')
     search_fields = ['firm', 'locality']
     prepopulated_fields = {'slug': ('firm',)}
     summernote_fields = ('description',)
@@ -43,7 +43,7 @@ class PostAdmin(SummernoteModelAdmin):
     """
     To display comments in admins
     """
-    list_display = ('pet_businesse', 'author', 'approved', 'date_created')
+    list_display = ('pet_businesse', 'author', 'approved', 'last_modified', 'date_created')
 
 
 @admin.register(Like)
@@ -51,4 +51,4 @@ class PostAdmin(SummernoteModelAdmin):
     """
     To display likes in admin.
     """
-    list_display = ('pet_business', 'author')
+    list_display = ('pet_business', 'author','date_created')
