@@ -10,34 +10,58 @@
         <!-- Displaying pet business detail -->
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h2 class="post-title">{{ pet_business_detail.firm }}</h2>
-                <p class="post-subtitle">With us since {{ pet_business_detail.date_created }}</p>
+                <p class="post-subtitle spacing-up">With us since {{ pet_business_detail.date_created }}</p>
                 <p>{{ pet_business_detail.description | safe }}</p>
-
-                <div class="row">
-                    <div class="col-md-6 border">
+                <hr class="orange-hr">
+                <div class="row spacing-up">
+                    <div class="col-md-6">
                         <p class="fw-bold">Feel free to contact us</p>
-                        <address>
+                        <p><img class="picto" src="{% static 'images/mapmarker' %}" alt="Address marker">
                             {{ pet_business_detail.firm }} <br>
                             {{ pet_business_detail.street }} {{ pet_business_detail.number }} <br>
                             {{ pet_business_detail.npa }} {{ pet_business_detail.locality }}
-                        </address>
+                        </p>
+                        <p><img class="picto" src="{% static 'images/mobile' %}" alt="Phone">
+                            {{ pet_business_detail.phone }}</p>
+                        <p><img class="picto" src="{% static 'images/at' %}" alt="Email">
+                            {{ pet_business_detail.email }}</p>
                     </div>
-                    <div class="col-md-6 border">
+                    <div class="col-md-6">
                         <p class="fw-bold">Follow us on</p>
                         <p>
-                            <a href="{{ pet_business_detail.website }}" target="_blank">Website</a> <br>
-                            <a href="{{ pet_business_detail.linkedin }}" target="_blank">LinkedIn</a> <br>
-                            <a href="{{ pet_business_detail.facebook }}" target="_blank">Facebook</a> <br>
-                            <a href="{{ pet_business_detail.instagram }}" target="_blank">Instagram</a> <br>
-                            <a href="{{ pet_business_detail.twitter }}" target="_blank">Twitter</a>
+                            {% if pet_business_detail.website %}
+                            <a href="{{ pet_business_detail.website }}" target="_blank"><img class="picto"
+                                    src="{% static 'images/website.svg' %}" alt="Website"></a>
+                            {% endif %}
+
+                            {% if pet_business_detail.linkedin %}
+                            <a href="{{ pet_business_detail.linkedin }}" target="_blank"><img class="picto"
+                                    src="{% static 'images/linkedin.svg' %}" alt="LinkedIn"></a>
+                            {% endif %}
+
+                            {% if pet_business_detail.facebook %}
+                            <a href="{{ pet_business_detail.facebook }}" target="_blank"><img class="picto"
+                                    src="{% static 'images/facebook.svg' %}" alt="Facebook"></a>
+                            {% endif %}
+
+                            {% if pet_business_detail.instagram %}
+                            <a href="{{ pet_business_detail.instagram }}" target="_blank"><img class="picto"
+                                    src="{% static 'images/instagram.svg' %}" alt="Instagram"></a>
+                            {% endif %}
+
+                            {% if pet_business_detail.tiktok %}
+                            <a href="{{ pet_business_detail.tiktok }}" target="_blank"><img class="picto"
+                                    src="{% static 'images/tiktok.svg' %}" alt="Tiktok"></a>
+                            {% endif %}
                         </p>
                     </div>
+                    <hr class="orange-hr">
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <!-- Conditional default picture display -->
                 {% if pet_business_detail.featured_image and "placeholder" in pet_business_detail.featured_image.url %}
                 <img class="card-img-top scale" src="{% static 'images/defaultpetbusiness.jpg' %}"
@@ -74,11 +98,11 @@
 
         <!-- Displaying Comments -->
 
-        <div class="row">
+        <div class="row spacing-up">
             <div class="col-md-6">
                 <h3>Comments:</h3>
                 {% for comment in comments %}
-                <div class="p-2 comments
+                <div class="p-2 border comments
                             {% if not comment.approved and comment.author == user %}
                             faded{% elif not comment.approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
@@ -97,8 +121,8 @@
                     {% endif %}
                     {% if user|in_group:"Pet Owners" %}
                     {% if user.is_authenticated and comment.author == user %}
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
-                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                    <button class="btn btn-warning" comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-danger" comment_id="{{ comment.id }}">Delete</button>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -115,10 +139,10 @@
                     <form id="commentForm" method="post">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
-                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        <button id="submitButton" type="submit" class="btn page-link">Submit</button>
                     </form>
                     {% elif not user.is_authenticated %}
-                    <p>Log in to write a new comment.</p>
+                    <p>Please log in to write a new comment or like a service.</p>
                     {% endif %}
                 </div>
             </div>
@@ -149,11 +173,8 @@
     </div>
 </div>
 
-
-<script src="{% static 'js/comments.js' %}"></script>
-
 {% endblock content %}
 
-<!--{% block extras %}
+{% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
-{% endblock %}-->
+{% endblock %}

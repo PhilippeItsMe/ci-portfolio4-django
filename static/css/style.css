@@ -66,6 +66,8 @@ h3 {
 
 p,
 a,
+.btn,
+address,
 li {
     font-family: "Quicksand", serif;
     font-size: 1rem;
@@ -167,7 +169,7 @@ footer {
 
 .orange-hr {
     color: var(--orange);
-    height: 1px;
+    width: 90%;
 }
 
 .image-wrapper {
@@ -202,6 +204,17 @@ footer {
 .spacing {
     margin-top: 4rem;
     margin-bottom: 2rem;
+}
+
+/*----- My Pet Services Details -----*/
+
+.spacing-up {
+    margin-top: 3rem;
+}
+
+.picto {
+    width: 25px;
+    margin-right: 10px;
 }
 
 /*----- Header & Footer Responsivness -----*/
