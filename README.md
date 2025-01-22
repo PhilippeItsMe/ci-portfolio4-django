@@ -298,6 +298,10 @@ Solution : Insert the conditional li inside the {% if user.is_authenticated %} t
 Issue : Data from a many2many relationship where not saved in the dB.<br>
 Solution : Adding form.save_m2m() in the pet_business view.<br>
 
+<strong>Bug 7</strong><br>
+Issue : Missalignement of the 3 section of pet_buiness_detail.html. <br>
+Solution : Rewrapping the section with the same boostrap approach.<br>
+
 ### Testing
 
 
