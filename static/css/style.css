@@ -231,6 +231,10 @@ footer {
     border-radius: 20px;
 }
 
+.like-wrapper {
+    margin-top: 1rem;
+}
+
 /*----- Header & Footer Responsivness -----*/
 
 @media screen and (max-width: 768px) {
