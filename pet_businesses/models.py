@@ -103,6 +103,18 @@ class PetBusiness (models.Model):
     def __str__(self):
         return f"{self.firm}"
 
+    def pet_type_tags(self):
+        """
+        Returns the pet types as a list of strings.
+        """
+        return [pet_type.pet_type for pet_type in self.business_pet_type.all()]
+    
+    def service_type_tags(self):
+        """
+        Returns the service types as a list of strings.
+        """
+        return [service_type.service_type for service_type in self.business_service_type.all()]
+
 
 # Comment Model
 
