@@ -160,7 +160,7 @@ footer {
     top: -222px;
 }
 
-/*----- Business list -----*/
+/*----- Business List -----*/
 
 .card {
     width: 100%;
@@ -198,15 +198,7 @@ footer {
     font-size: 1.3rem;
 }
 
-
-/*----- My Pet Services -----*/
-
-.spacing {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-}
-
-/*----- My Pet Services Details -----*/
+/*----- Business Detail -----*/
 
 .spacing-up {
     margin-top: 3rem;
@@ -233,6 +225,14 @@ footer {
 
 .like-wrapper {
     margin-top: 1rem;
+}
+
+
+/*----- My Pet Services (Business Form) -----*/
+
+.spacing {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
 }
 
 /*----- Header & Footer Responsivness -----*/
