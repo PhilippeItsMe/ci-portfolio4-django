@@ -5,7 +5,8 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import PetBusiness, Comment, Like
-from .forms import CommentForm, UserRegistrationForm, CustomSignupForm, PetBusinessForm
+from .forms import CommentForm, UserRegistrationForm
+from .forms import CustomSignupForm, PetBusinessForm
 from pet_businesses.utils import group_required
 from django.core.exceptions import PermissionDenied
 
@@ -29,9 +30,11 @@ def custom_signup(request):
                 messages.success(request, "Account created successfully!")
                 return redirect('login')
             except Group.DoesNotExist:
-                messages.error(request, f"The group '{group_name}' does not exist.")
+                messages.error(request,
+                               f"The group '{group_name}' does not exist.")
         else:
-            messages.error(request, "There was an error with your registration.")
+            messages.error(request,
+                           "There was an error with your registration.")
     else:
         user_form = UserRegistrationForm()
         group_form = CustomSignupForm()
@@ -66,7 +69,7 @@ def pet_business_detail(request, slug):
 
     if request.method == "POST":
         if not request.user.groups.filter(name="Pet Owners").exists():
-            raise PermissionDenied("You do not have permission to post comments.")
+            raise PermissionDenied("You do not have permission to comments.")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -76,7 +79,8 @@ def pet_business_detail(request, slug):
             messages.success(
                 request, "Comment submitted and awaiting approval."
             )
-            return HttpResponseRedirect(reverse('pet_business_detail', args=[slug]))
+            return HttpResponseRedirect(reverse('pet_business_detail',
+                                                args=[slug]))
         else:
             messages.error(request, "There was an error with your submission.")
     else:
@@ -113,7 +117,8 @@ def comment_edit(request, slug, comment_id):
             comment.pet_business = post
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment updated successfully.')
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment updated successfully.')
         else:
             messages.add_message(request,
                                  messages.ERROR,
@@ -156,27 +161,29 @@ def like_post(request, pet_business_id):
 def pet_business_form(request):
 
     """
-    View to list pet businesses created by the logged-in user and create new one.
+    View to list pet businesses created
+    by the logged-in user and create new one.
     """
     pet_businesses = PetBusiness.objects.filter(author=request.user, approved=True)
 
     if request.method == "POST":
         form = PetBusinessForm(request.POST)
-        
+
         if form.is_valid():
             pet_business = form.save(commit=False)
             pet_business.author = request.user
             pet_business.save()
             form.save_m2m()
-            messages.success(request, "Pet business submitted and awaiting approval.")
+            messages.success(request,
+                             "Pet business submitted and awaiting approval.")
             return redirect('pet_business_form')
         else:
             messages.error(request, "There was an error with your submission.")
     else:
-            form = PetBusinessForm()
+        form = PetBusinessForm()
 
     return render(request, 'pet_businesses/pet_business_form.html', {
-        'pet_businesses': pet_businesses,'form': form,
+        'pet_businesses': pet_businesses, 'form': form,
     })
 
 
@@ -185,18 +192,20 @@ def pet_business_edit(request, slug, pet_business_id):
     """
     View to edit pet businesses created by the logged-in user.
     """
-    pet_business = get_object_or_404(PetBusiness, id=pet_business_id, slug=slug, author=request.user)
+    pet_business = get_object_or_404(PetBusiness,
+                                     id=pet_business_id, slug=slug,
+                                       author=request.user)
 
     if request.method == "POST":
         form = PetBusinessForm(data=request.POST, instance=pet_business)
-        
+
         if form.is_valid():
             pet_business = form.save(commit=False)
-            pet_business.author = request.user  
+            pet_business.author = request.user
             pet_business.save()
             form.save_m2m()
             messages.success(request, "Pet business updated successfully.")
-            return redirect('pet_business_form')  
+            return redirect('pet_business_form')
         else:
             messages.error(request, "There was an error with your submission.")
     else:
@@ -204,7 +213,8 @@ def pet_business_edit(request, slug, pet_business_id):
 
     return render(request, 'pet_businesses/pet_business_form.html', {
         'form': form,
-        'pet_businesses': PetBusiness.objects.filter(author=request.user, approved=True),
+        'pet_businesses': PetBusiness.objects.filter(author=request.user,
+                                                     approved=True),
     })
 
 
@@ -213,7 +223,8 @@ def pet_business_delete(request, slug, pet_business_id):
     """
     View to delete pet businesses created by the logged-in user.
     """
-    pet_business = get_object_or_404(PetBusiness, id=pet_business_id, slug=slug, author=request.user)
+    pet_business = get_object_or_404(PetBusiness, id=pet_business_id,
+                                     slug=slug, author=request.user)
 
     if request.method == "POST":
         pet_business.delete()

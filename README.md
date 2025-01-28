@@ -582,23 +582,28 @@ pet_businesses / custom_tag.py :
 <img src="static/readme/pbcustomtagpycheck.webp">
 
 pet_businesses / admin.py :
-<img src="static/readme/pbadmingpycheck.webp">
+<img src="static/readme/pbadminpycheck.webp">
 
 pet_businesses / apps.py :
 <img src="static/readme/pbappspycheck.webp">
 
 pet_businesses / forms.py :
-
+<img src="static/readme/pbformspycheck.webp">
 
 pet_businesses / urls.py :
-
+<img src="static/readme/pburlspycheck.webp">
 
 pet_businesses / utils.py :
-<img src="static/readme/utilspycheck.webp">
+<img src="static/readme/pbutilspycheck.webp">
 
 pet_businesses / views.py :
 
 
+env.py :
+CONFIDENTIAL INFORMATION
+
+manage.py :
+<img src="static/readme/managepycheck.webp">
 
 
 ### Deployement
