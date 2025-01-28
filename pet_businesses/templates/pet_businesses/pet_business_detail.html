@@ -83,6 +83,7 @@
             <div class="col-md-6">
 
                 <!-- Conditional default picture display -->
+
                 {% if pet_business_detail.featured_image and "placeholder" in pet_business_detail.featured_image.url %}
                 <img class="card-img-top rounded-corner" src="{% static 'images/defaultpetbusiness.webp' %}"
                     alt="Default pet business image">
@@ -93,15 +94,20 @@
 
                 <div class="like-wrapper">
                     <div class="row justify-content-evenly">
+
                         <!-- Comments count -->
+
                         <p class="col d-flex justify-content-end"><img class="picto"
                                 src="{% static 'images/comment.svg' %}" alt="Comment">:
                             {{ comment_count }}</p>
+
                         <!-- Likes count -->
+
                         <p class="col text-center"><img class="picto" src="{% static 'images/like.svg' %}" alt="Like">:
                             {{ pet_business_detail.likes.count }}</p>
 
                         <!-- Like & Unlike Button -->
+
                         {% if user|in_group:"Pet Owners" %}
                         <form class="col d-flex justify-content-start"
                             action="{% url 'like_post' pet_business_detail.id %}" method="POST">
@@ -174,7 +180,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- Delete confirmation modal -->
