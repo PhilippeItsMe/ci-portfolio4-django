@@ -2,6 +2,8 @@
 
 # Passeport Chats & Chiens
 
+<img src="static/readme/website.webp">
+
 <a style="text-decoration:underline;" target="_blank" href="https://ci-portfolio4-django-86a85546f387.herokuapp.com/">Passeport Chats & Chiens LIVE link</a><br>
 <a style="text-decoration:underline;" target="_blank" href="https://github.com/PhilippeItsMe/ci-portfolio4-django.git">Passeport Chats & Chiens GITHUB link</a>
 
@@ -195,7 +197,7 @@ Week 5: Testing, debugging, deployement and documentation<br>
 The project's data model is structured as follows: it revolves around <span style="color:#0D99FF;">pet businesses</span>, <span style="color:#FFA629;">comments and likes</span> and <span style="color:#14AE5C;">pet owners</span>. The sales-related section of the data model will be added after completing the corresponding lesson (LMS).
 
 
-The fourth project includes the sections for pet businesses, comments, and likes. The remaining components (pet businesses and product sales) will be integrated into the fifth project.
+The fourth project includes the sections for pet businesses, comments, and likes. The remaining components (pet owners and product sales) will be integrated into the fifth project.
 
 For better readability of this model, please download here : [Download the data model](./static/readme/datamodel.pdf).
 
@@ -203,6 +205,92 @@ For better readability of this model, please download here : [Download the data 
 
 
 ## API Endpoints
+
+
+  <table border="1" cellpadding="10" cellspacing="0">
+    <thead style="background-color:white; color:black">
+        <tr style="background-color:RGB(249, 249, 249, 0.1)">
+            <th>Endpoint</th>
+            <th>CRUD Method</th>
+            <th>HTTP Method</th>
+            <th>Purpose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>/</td>
+            <td>Read</td>
+            <td>GET</td>
+            <td>List all pet businesses.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/</td>
+            <td>Read</td>
+            <td>GET</td>
+            <td>View details of a specific pet business.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/</td>
+            <td>Create</td>
+            <td>POST</td>
+            <td>Add a comment to a specific pet business.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/edit_comment/&lt;int:comment_id&gt;/</td>
+            <td>Read/Update</td>
+            <td>GET, POST</td>
+            <td>Edit a specific comment.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/delete_comment/&lt;int:comment_id&gt;/</td>
+            <td>Delete</td>
+            <td>POST</td>
+            <td>Delete a specific comment.</td>
+        </tr>
+        <tr>
+            <td>/pet-business/&lt;int:pet_business_id&gt;/like/</td>
+            <td>Create/Delete</td>
+            <td>POST</td>
+            <td>Toggle "like" for a specific business.</td>
+        </tr>
+        <tr>
+            <td>/pet_business_form/</td>
+            <td>Read/Create</td>
+            <td>GET, POST</td>
+            <td>Display pet businesses user's businesses and form to add new ones.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/edit/&lt;int:pet_business_id&gt;/</td>
+            <td>Read/Update</td>
+            <td>GET, POST</td>
+            <td>Edit a specific business.</td>
+        </tr>
+        <tr>
+            <td>&lt;slug:slug&gt;/delete/&lt;int:pet_business_id&gt;/</td>
+            <td>Delete</td>
+            <td>POST</td>
+            <td>Delete a specific business.</td>
+        </tr>
+        <tr>
+            <td>/signup/</td>
+            <td>Create</td>
+            <td>POST</td>
+            <td>Handle user signup and group assignment.</td>
+        </tr>
+        <tr>
+            <td>/login/</td>
+            <td>Create</td>
+            <td>POST</td>
+            <td>Log in a user and obtain authentication tokens.</td>
+        </tr>
+        <tr>
+            <td>/logout/</td>
+            <td>Create</td>
+            <td>POST</td>
+            <td>Log out a user and invalidate their authentication tokens.</td>
+        </tr>
+    </tbody>
+</table>
 
 
 
@@ -309,6 +397,21 @@ Solution : Rewrapping the section with the same boostrap approach.<br>
 
 ### Deployement
 
+- **Clone the Repository**: Clone the GitHub repository and open it on VCS for developpement
+
+- **Configure Environment Variables**: Create a .env file in the root directory of your project. Add all necessary environment variables, such as DATABASE_URL, CLOUDINARY_API_KEY, and any other sensitive data.
+
+- **Install Dependencies**: Ensure a virtual environment is active. Install the project dependencies using the command pip install -r requirements.txt.
+
+- **Run Migrations**: Apply database migrations to set up the PostgreSQL schema using the command python manage.py migrate.
+
+- **Test the Application**: Run the application locally using Visual Studio Code to ensure it works as expected. Use the terminal to execute commands like python manage.py runserver.
+
+- **Deploy to Heroku**: Push your changes to the GitHub repository, triggering continuous deployment to Heroku. Ensure that the Heroku app is configured with the necessary environment variables and add-ons.
+
+- **Manage Media Files**: Configure Cloudinary in your Django settings. Ensure that media files are correctly uploaded and managed through Cloudinary.
+
+
 ### Platforms and Tools Overview
 
 The **Passeport Chats & Chiens** project integrates a range of platforms and services to streamline its development, deployment, and management processes.
@@ -362,6 +465,8 @@ Code ressources
 - [Code Institue LMS](https://codeinstitute.net/global/)
 - [Django 5 By Example by Antonio Melé](https://www.amazon.com/Django-Example-powerful-reliable-applications/dp/1805125451)
 - [LinkedIn Learning - Django Trainings](https://learning.linkedin.com/cx/get-started?src=go-pa&trk=sem-ga_campid.21301455485_asid.163286452755_crid.699771781128_kw.linkedin%20learning_d.c_tid.kwd-47311766595_n.g_mt.e_geo.9187339&mcid=7198411097454903326&cid=&gad_source=1&gclid=Cj0KCQiA-aK8BhCDARIsAL_-H9nlMGzhoLBnAUzoF-g44X9L4TAtLR_UmBreCuPuMTtd2nKCCuzeIRsaApGlEALw_wcB&gclsrc=aw.ds)
+
+Business model inspiration
 - [Passeport Beauté](https://passeportbeaute.ch/)
 - [Beauty Pass](https://www.beautypass.ch/)
 - [Passeport Gourmand](https://www.passeport-gourmand.ch/)
@@ -373,6 +478,7 @@ Design template inspiration
 Special thanks
 - To my CI mentor : Spencer Barill
 - To the CI support team
+- To the CI student: Sophie Tiger, for her exceptional, state-of-the-art README documentation.
 
 
 
