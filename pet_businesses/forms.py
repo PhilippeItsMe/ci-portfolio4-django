@@ -4,8 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
 
 
-# Pet business form
-
 class PetBusinessForm(forms.ModelForm):
     """
     Form for creating and updating PetBusiness instances.
@@ -32,8 +30,10 @@ class PetBusinessForm(forms.ModelForm):
             'description',
         ]
         widgets = {
-            'firm': forms.TextInput(attrs={'class': 'form-control', 'id': 'firm-input'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control', 'id': 'slug-input'}),
+            'firm': forms.TextInput(attrs={'class': 'form-control',
+                                           'id': 'firm-input'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control',
+                                           'id': 'slug-input'}),
             'street': forms.TextInput(attrs={'class': 'form-control'}),
             'number': forms.TextInput(attrs={'class': 'form-control'}),
             'npa': forms.TextInput(attrs={'class': 'form-control'}),
@@ -41,7 +41,8 @@ class PetBusinessForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'website': forms.URLInput(attrs={'class': 'form-control'}),
-            'featured_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'featured_image': forms.ClearableFileInput(attrs={'class':
+                                                              'form-control'}),
             'linkedin': forms.URLInput(attrs={'class': 'form-control'}),
             'facebook': forms.URLInput(attrs={'class': 'form-control'}),
             'instagram': forms.URLInput(attrs={'class': 'form-control'}),
@@ -71,8 +72,6 @@ class PetBusinessForm(forms.ModelForm):
         }
 
 
-# Comments form
-
 class CommentForm(forms.ModelForm):
     """
     Form to enter comments.
@@ -84,8 +83,6 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'id': 'id_body'}),
         }
 
-
-# Registration form
 
 class UserRegistrationForm(UserCreationForm):
     """

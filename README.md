@@ -436,7 +436,6 @@ Solution : Rewrapping the section with the same boostrap approach.<br>
         </tbody>
     </table>
 
-
 **API Endpoints testing**
 
 Since the API endpoints and features are very similar, testing was conducted exclusively on the API endpoints, with an additional test performed on the admin functionality.
@@ -546,6 +545,24 @@ Since the API endpoints and features are very similar, testing was conducted exc
     </tbody>
 </table>
 
+**HTML testing : PASSED**
+
+<img src="static/readme/htmlcheck.webp">
+
+**CSS testing : PASSED**
+
+<img src="static/readme/csscheck.webp">
+
+**JS testing : PASSED**
+
+comment.js :
+<img src="static/readme/commentjscheck.webp">
+
+pet_businesses.js :
+<img src="static/readme/petbusinessesjscheck.webp">
+
+slug_creation.jx :
+<img src="static/readme/slugjscheck.webp">
 
 ### Deployement
 

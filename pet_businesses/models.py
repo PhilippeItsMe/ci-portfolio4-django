@@ -1,31 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User, Group, Permission
-from django.contrib.contenttypes.models import ContentType # Refer to all models in the project
-from django.apps import apps # To refer to all apps in the project
+from django.contrib.contenttypes.models import ContentType
+from django.apps import apps
 from cloudinary.models import CloudinaryField
 
-
-# Group & Permission Model
 
 def create_groups_and_permissions():
     """
     Model for groups and permissions
     """
-    # Pet Owners Group
     pet_owners_group, created = Group.objects.get_or_create(name='Pet Owners')
     pet_model_comment = apps.get_model('pet_businesses', 'Comment')
     pet_model_like = apps.get_model('pet_businesses', 'Like')
     pet_permissions = Permission.objects.filter(content_type=ContentType.objects.get_for_model(pet_model_comment, pet_model_like))
     pet_owners_group.permissions.set(pet_permissions)
-
-    # Business Owners Group
     business_owners_group, created = Group.objects.get_or_create(name='Business Owners')
-    business_model = apps.get_model('pet_businesses', 'Business')  # Replace 'your_app' and 'Business'
+    business_model = apps.get_model('pet_businesses', 'Business')
     business_permissions = Permission.objects.filter(content_type=ContentType.objects.get_for_model(business_model))
     business_owners_group.permissions.set(business_permissions)
 
-
-# Pet Businesses Model
 
 class ServiceType (models.Model):
     """
@@ -108,15 +101,13 @@ class PetBusiness (models.Model):
         Returns the pet types as a list of strings.
         """
         return [pet_type.pet_type for pet_type in self.business_pet_type.all()]
-    
+
     def service_type_tags(self):
         """
         Returns the service types as a list of strings.
         """
         return [service_type.service_type for service_type in self.business_service_type.all()]
 
-
-# Comment Model
 
 class Comment(models.Model):
     """
@@ -140,18 +131,16 @@ class Comment(models.Model):
         return f"Comment {self.content} by {self.author}"
 
 
-# Like Model
-
 class Like(models.Model):
     """
     Model for likes on pet businesses.
     """
     pet_business = models.ForeignKey(PetBusiness,
-                                      on_delete=models.CASCADE,
-                                      related_name="likes")
+                    on_delete=models.CASCADE,
+                    related_name="likes")
     author = models.ForeignKey(User,
-                               on_delete=models.CASCADE,
-                               related_name="liker")
+                    on_delete=models.CASCADE,
+                    related_name="liker")
     date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -163,4 +152,3 @@ class Like(models.Model):
 
     def __str__(self):
         return f'{self. author} {self.pet_business}'
-    

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from functools import wraps
 from django.core.exceptions import PermissionDenied
 
+
 def group_required(group_name):
     """
     Decorator to restrict view access to users in a specific group.
