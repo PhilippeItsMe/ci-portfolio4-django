@@ -65,7 +65,9 @@ def pet_business_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
 
     likes_count = post.likes.count()
-    has_liked = post.likes.filter(author=request.user).exists() if request.user.is_authenticated else False
+    has_liked = post.likes.filter(
+        author=request.user
+        ).exists() if request.user.is_authenticated else False
 
     if request.method == "POST":
         if not request.user.groups.filter(name="Pet Owners").exists():
@@ -164,7 +166,8 @@ def pet_business_form(request):
     View to list pet businesses created
     by the logged-in user and create new one.
     """
-    pet_businesses = PetBusiness.objects.filter(author=request.user, approved=True)
+    pet_businesses = PetBusiness.objects.filter(
+        author=request.user, approved=True)
 
     if request.method == "POST":
         form = PetBusinessForm(request.POST)
@@ -192,9 +195,9 @@ def pet_business_edit(request, slug, pet_business_id):
     """
     View to edit pet businesses created by the logged-in user.
     """
-    pet_business = get_object_or_404(PetBusiness,
-                                     id=pet_business_id, slug=slug,
-                                       author=request.user)
+    pet_business = get_object_or_404(
+        PetBusiness,
+        id=pet_business_id, slug=slug, author=request.user)
 
     if request.method == "POST":
         form = PetBusinessForm(data=request.POST, instance=pet_business)
