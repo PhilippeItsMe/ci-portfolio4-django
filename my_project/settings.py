@@ -7,11 +7,13 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-SECRET_KEY = 'django-insecure-^wlq=w-gaf$)-it&c_qps+!$c1dumq*mpj=0d%9k^%b5+$_0ty'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io','.herokuapp.com']
+ALLOWED_HOSTS = ['localhost',
+                 '8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io',
+                 '.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -79,22 +81,20 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com",
     "https://8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io"
-
 ]
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 

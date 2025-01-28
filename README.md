@@ -564,6 +564,43 @@ pet_businesses.js :
 slug_creation.jx :
 <img src="static/readme/slugjscheck.webp">
 
+**PY testing :**
+
+my_project / asgi.py :
+<img src="static/readme/mpasgipycheck.webp">
+
+my_project / settings.py :
+<img src="static/readme/mpsettingspycheck.webp">
+
+my_project / urls.py :
+<img src="static/readme/mpurlspycheck.webp">
+
+my_project / wsgi.py :
+<img src="static/readme/mpwsgipycheck.webp">
+
+pet_businesses / custom_tag.py :
+<img src="static/readme/pbcustomtagpycheck.webp">
+
+pet_businesses / admin.py :
+<img src="static/readme/pbadmingpycheck.webp">
+
+pet_businesses / apps.py :
+<img src="static/readme/pbappspycheck.webp">
+
+pet_businesses / forms.py :
+
+
+pet_businesses / urls.py :
+
+
+pet_businesses / utils.py :
+<img src="static/readme/utilspycheck.webp">
+
+pet_businesses / views.py :
+
+
+
+
 ### Deployement
 
 - **Clone the Repository**: Clone the GitHub repository and open it on VCS for developpement
