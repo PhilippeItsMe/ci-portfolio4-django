@@ -22,7 +22,7 @@
                                 {% endif %}
                             </div>
                             <a href="{% url 'pet_business_detail' pet_business.slug %}" class="link">
-                                <h2 id="title-color">{{ pet_business.firm }}</h2>
+                                <h2 class="title-color">{{ pet_business.firm }}</h2>
                             </a>
                             <hr class="orange-hr">
                             <p>{{ pet_business.description|truncatewords_html:20|safe }}</p>
