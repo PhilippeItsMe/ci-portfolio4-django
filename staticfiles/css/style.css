@@ -16,6 +16,7 @@ main {
 }
 
 .page-wrapper {
+    /*Padding around the full page*/
     padding: 0 2rem;
 }
 
@@ -100,12 +101,21 @@ li {
     border-radius: 10%;
 }
 
-.btneffect {
+.fake-btn-effect {
     margin-top: 1rem;
     background-color: var(--offwhite);
     padding: 5px 10px;
     border-radius: 10px;
     display: inline-block;
+}
+
+.wrapping-border {
+    display: inline-block;
+    border: 1px solid var(--darkgrey);
+    border-radius: 20px;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+    width: auto;
 }
 
 /*----- Header -----*/
@@ -234,7 +244,7 @@ footer {
     margin-bottom: 2rem;
 }
 
-/*----- Header & Footer Responsivness -----*/
+/*----- Responsivness -----*/
 
 @media screen and (max-width: 768px) {
     .btneffect {
@@ -250,11 +260,14 @@ footer {
     }
 }
 
-/*----- My Pet Services Responsivness -----*/
-
 @media screen and (max-width: 520px) {
     .hidden {
         display: none;
+    }
+
+    .footercat {
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -263,5 +276,10 @@ footer {
     .btn-danger,
     .btn-warning {
         margin: 0.2rem 0rem;
+    }
+
+    .logo {
+        width: 150px;
+        height: auto;
     }
 }

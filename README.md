@@ -293,9 +293,6 @@ For better readability of this model, please download here : [Download the data 
 </table>
 
 
-
-
-
 ## Frameworks & Libraries
 
 The following libraries and resources were used in this project to ensure smooth development, deployment, and functionality:
@@ -461,7 +458,6 @@ This comprehensive combination of tools ensures that the **Passeport Chats & Chi
 
 Code ressources
 - [Django Documentation](https://www.djangoproject.com/)
-- [Django REST Framework](https://www.django-rest-framework.org/)
 - [Code Institue LMS](https://codeinstitute.net/global/)
 - [Django 5 By Example by Antonio Melé](https://www.amazon.com/Django-Example-powerful-reliable-applications/dp/1805125451)
 - [LinkedIn Learning - Django Trainings](https://learning.linkedin.com/cx/get-started?src=go-pa&trk=sem-ga_campid.21301455485_asid.163286452755_crid.699771781128_kw.linkedin%20learning_d.c_tid.kwd-47311766595_n.g_mt.e_geo.9187339&mcid=7198411097454903326&cid=&gad_source=1&gclid=Cj0KCQiA-aK8BhCDARIsAL_-H9nlMGzhoLBnAUzoF-g44X9L4TAtLR_UmBreCuPuMTtd2nKCCuzeIRsaApGlEALw_wcB&gclsrc=aw.ds)

@@ -244,7 +244,7 @@ footer {
     margin-bottom: 2rem;
 }
 
-/*----- Header & Footer Responsivness -----*/
+/*----- Responsivness -----*/
 
 @media screen and (max-width: 768px) {
     .btneffect {
@@ -260,11 +260,14 @@ footer {
     }
 }
 
-/*----- My Pet Services Responsivness -----*/
-
 @media screen and (max-width: 520px) {
     .hidden {
         display: none;
+    }
+
+    .footercat {
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -273,5 +276,10 @@ footer {
     .btn-danger,
     .btn-warning {
         margin: 0.2rem 0rem;
+    }
+
+    .logo {
+        width: 150px;
+        height: auto;
     }
 }
