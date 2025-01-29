@@ -9,8 +9,23 @@
 
 
 ## Project
-
 Imagine a world where caring for your beloved pet becomes easier, more affordable, and oh-so-rewarding! Our platform is here to connect passionate pet owners with trusted businesses that cater to every furry, feathery, or scaly need. For just a small annual fee, you'll unlock exclusive perks: enjoy a fabulous 50% discount on your first purchase and a delightful CHF 20 off on your second visit—per business. Because your pet deserves the very best, and so do you! 
+
+
+## Design
+
+To establish a consistent and eye-catching design, the logo, primary and secondary colors, and the following fonts have been defined for this site. Additionally, wireframes of the three main pages have been created using Balsamiq.
+
+<img src="static/readme/brandesign.webp">
+
+**Home page (pet_business_list.html)**
+<img src="static/readme/businesslist.webp">
+
+**Company detailed presentation (pet_business_detail.html)**
+<img src="static/readme/businessdetail.webp">
+
+**Companies presentation management (pet_business_formhtml)**
+<img src="static/readme/businessform.webp">
 
 
 ## Key features
@@ -564,12 +579,13 @@ pet_businesses.js :
 slug_creation.jx :
 <img src="static/readme/slugjscheck.webp">
 
-**PY testing :**
+**PY testing : ALL CLEAR**
 
 my_project / asgi.py :
 <img src="static/readme/mpasgipycheck.webp">
 
-my_project / settings.py :
+my_project / settings.py :<br>
+Lines 88, 91, 94, and 97 are commands issued by AUTH and are a bit too long. On Sarah's advice (CI support assistance), they have been blocked using # noqa.
 <img src="static/readme/mpsettingspycheck.webp">
 
 my_project / urls.py :
@@ -682,8 +698,7 @@ Business model inspiration
 - [Passeport Gourmand](https://www.passeport-gourmand.ch/)
 
 Design template inspiration
-- [Webflow template 1](https://webflow.com/templates/html/pet-place-veterinary-website-template)
-- [Webflow template 2](https://webflow.com/templates/html/pebo-pets-website-template)
+- [Webflow template](https://webflow.com/templates/html/pet-place-veterinary-website-template)
 
 Special thanks
 - To my CI mentor : Spencer Barill
