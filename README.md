@@ -560,6 +560,12 @@ Since the API endpoints and features are very similar, testing was conducted exc
     </tbody>
 </table>
 
+
+**LIGHTHOUSE testing : OK** <br>
+The issue of third-party cookies has been raised by Google and negatively impacts the best practices score due to the use of Cloudinary.
+
+<img src="static/readme/lighthouse.webp">
+
 **HTML testing : PASSED**
 
 <img src="static/readme/htmlcheck.webp">
@@ -639,6 +645,50 @@ manage.py :
 - **Manage Media Files**: Configure Cloudinary in your Django settings. Ensure that media files are correctly uploaded and managed through Cloudinary.
 
 
+### Cloning and Forking the Repository
+
+#### Cloning the Repository
+
+To set up the project locally, follow these steps:
+
+
+1.  **Clone the repository using the following command:**
+    git clone https://github.com/PhilippeItsMe/ci-portfolio4-django.git
+
+2.  **Navigate into the project directory:**
+    cd ci-portfolio4-django
+
+3.  **Install the required dependencies:**
+    pip install -r requirements.txt
+
+4.  **Set up local environment variables by creating a .env file in the root directory and adding the necessary configurations.**
+
+5.  **Apply database migrations using the following commands:**
+    python manage.py makemigrations
+    python manage.py migrate
+
+6.  **Start the development server:**
+    python3 manage.py runserver
+
+#### Forking the Repository (For Contributions)
+
+To contribute to the project, follow these steps:
+
+1.  Fork the repository by visiting the GitHub repository page and clicking the "Fork" button.
+
+2.  Clone your forked repository to your local machine:
+    git clone https://github.com/YOUR_USERNAME/ci-portfolio4-django.git
+
+3.  Follow the local setup steps mentioned above.
+
+4.  Make changes and commit them to your forked repository.
+
+5.  Push your changes using the following command:
+    git push origin YOUR_BRANCH_NAME
+
+6.  Create a pull request by navigating to the original repository on GitHub and submitting your changes for review.
+
+
 ### Platforms and Tools Overview
 
 The **Passeport Chats & Chiens** project integrates a range of platforms and services to streamline its development, deployment, and management processes.
@@ -704,16 +754,3 @@ Special thanks
 - To my CI mentor : Spencer Barill
 - To the CI support team
 - To the CI student: Sophie Tiger, for her exceptional, state-of-the-art README documentation.
-
-
-
-
-
-
-
-
-
-
-
-
-
