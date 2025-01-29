@@ -597,7 +597,7 @@ pet_businesses / utils.py :
 <img src="static/readme/pbutilspycheck.webp">
 
 pet_businesses / views.py :
-
+<img src="static/readme/pbviewspycheck.webp">
 
 env.py :
 CONFIDENTIAL INFORMATION

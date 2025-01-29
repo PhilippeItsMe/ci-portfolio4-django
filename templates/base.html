@@ -39,7 +39,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     {% if user|in_group:"Business Owners" %}
-                    <li><a class="nav-link" href="{% url 'pet_business_form' %}">My Pet Compagnies</a></li>
+                    <li><a class="nav-link" href="{% url 'pet_business_form' %}">My Pet Companies</a></li>
                     {% endif %}
 
                     <li class="nav-item">
@@ -87,6 +87,7 @@
     </div>
 
     <!-- Displaying Django messages -->
+
     <div class=" container">
         <div class="row">
             <div class="col-md-8 offset-md-2">

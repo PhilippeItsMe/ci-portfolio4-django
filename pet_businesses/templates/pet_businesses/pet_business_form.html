@@ -5,7 +5,7 @@
 
 
 <div class="page-wrapper">
-    <h3>My Pet Compagnies</h3>
+    <h3>My Pet Companies</h3>
 
     <!-- Existing list of pet businesses -->
 
@@ -13,7 +13,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Compagny</th>
+                <th>Companies</th>
                 <th class="hidden">Created</th>
                 <th>Actions</th>
             </tr>
@@ -26,7 +26,9 @@
                 <td>
                     <a href="{% url 'pet_business_edit' business.slug business.id %}"
                         class="btn btn-sm btn-warning">Edit</a>
+
                     <!-- Delete button triggering confirmation modal -->
+
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                         data-bs-target="#deleteModal"
                         data-href="{% url 'pet_business_delete' business.slug business.id %}">
@@ -42,6 +44,7 @@
     {% endif %}
 
     <!-- Form to create a new pet business -->
+
     <h3 class="spacing">{% if form.instance.pk %}Edit Pet Business{% else %}Let's create a new pet compagny{% endif %}
     </h3>
     <form method="POST">

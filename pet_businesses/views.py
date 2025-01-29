@@ -49,7 +49,7 @@ class BusinessList(generic.ListView):
     """
     View to render businesses list.
     """
-    queryset = PetBusiness.objects.all()
+    queryset = PetBusiness.objects.filter(approved=True)
     template_name = "pet_businesses/pet_business_list.html"
     context_object_name = "pet_business_list"
     paginate_by = 3
