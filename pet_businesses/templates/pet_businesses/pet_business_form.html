@@ -47,10 +47,10 @@
 
     <h3 class="spacing">{% if form.instance.pk %}Edit Pet Business{% else %}Let's create a new pet compagny{% endif %}
     </h3>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn page-link">
+        {{ form|crispy }}
+        <button type="submit" class="btn page-link mt-3">
             {% if form.instance.pk %}Update Compagny{% else %}Create Compagny{% endif %}
         </button>
     </form>

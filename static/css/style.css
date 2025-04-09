@@ -166,7 +166,7 @@ footer {
     height: 300px;
     position: absolute;
     right: 50px;
-    top: -222px;
+    top: -218px;
 }
 
 /*----- Business List -----*/
@@ -246,26 +246,22 @@ footer {
 
 /*----- Responsivness -----*/
 
+@media screen and (max-width: 1060px) {
+
+    .footercat {
+        display: none;
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .btneffect {
         margin-top: 30px;
-    }
-
-    .footercat {
-        width: 200px;
-        height: 200px;
-        position: absolute;
-        right: 50px;
-        top: -148px;
     }
 }
 
 @media screen and (max-width: 520px) {
     .hidden {
-        display: none;
-    }
-
-    .footercat {
         display: none;
     }
 }

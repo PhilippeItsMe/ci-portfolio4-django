@@ -71,7 +71,16 @@ class PetBusinessForm(forms.ModelForm):
             'description': 'Services Description',
         }
 
-
+        help_texts = {
+            'npa': 'Format: 4-digit postal code (e.g. 1000)',
+            'phone': 'Format: Swiss mobile (e.g. 079 123 45 67)',
+            'website': 'Enter the full URL (e.g. https://yourwebsite.com)',
+            'linkedin': 'Enter the full LinkedIn profile URL (e.g. https://linkedin.com/in/yourname)',
+            'facebook': 'Enter the full Facebook page URL (e.g. https://facebook.com/yourpage)',
+            'instagram': 'Enter the full Instagram profile URL (e.g. https://instagram.com/yourhandle)',
+            'tiktok': 'Enter the full TikTok profile URL (e.g. https://tiktok.com/@yourhandle)',
+        }
+ 
 class CommentForm(forms.ModelForm):
     """
     Form to enter comments.

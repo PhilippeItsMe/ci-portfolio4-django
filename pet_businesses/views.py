@@ -152,10 +152,17 @@ def comment_delete(request, slug, comment_id):
 @group_required("Pet Owners")
 def like_post(request, pet_business_id):
     pet_business = get_object_or_404(PetBusiness, id=pet_business_id)
-    like, created = Like.objects.get_or_create(pet_business=pet_business,
-                                               author=request.user)
-    if not created:
+    like, created = Like.objects.get_or_create(
+        pet_business=pet_business,
+        author=request.user
+    )
+
+    if created:
+        messages.success(request, 'Like added!')
+    else:
         like.delete()
+        messages.success(request, 'Like removed!')
+
     return redirect('pet_business_detail', slug=pet_business.slug)
 
 
