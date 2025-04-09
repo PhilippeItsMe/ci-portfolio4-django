@@ -1,6 +1,5 @@
 from django.contrib.auth.models import Group
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -134,8 +133,6 @@ def comment_delete(request, slug, comment_id):
     """
     View to delete comment.
     """
-    queryset = PetBusiness.objects.filter(approved=True)
-    post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
     if comment.author == request.user:
