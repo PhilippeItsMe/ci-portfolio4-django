@@ -11,10 +11,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost',
-                 '8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io',
+ALLOWED_HOSTS = ['localhost','127.0.0.1:8001',
+                 '8000-philippeits-ciportfolio-jzrpxp13wr3.ws-eu118.gitpod.io',
                  '.herokuapp.com']
 
 INSTALLED_APPS = [
@@ -82,7 +82,8 @@ DATABASES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com",
-    "https://8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io"
+    "https://8000-philippeits-ciportfolio-8uof5fohxd7.ws-eu117.gitpod.io",
+    "https://8000-philippeits-ciportfolio-jzrpxp13wr3.ws-eu118.gitpod.io",
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
