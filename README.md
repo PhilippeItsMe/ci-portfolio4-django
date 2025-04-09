@@ -286,7 +286,7 @@ Since the API endpoints and features are very similar, testing was conducted exc
             <td>/pet_business_form/</td>
             <td>Read/Create</td>
             <td>GET, POST</td>
-            <td>Display pet businesses user's businesses and form to add new ones.</td>
+            <td>Display to business owners a form to add new ones.</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/edit/&lt;int:pet_business_id&gt;/</td>
@@ -470,92 +470,133 @@ Since the API endpoints and features are very similar, testing was conducted exc
             <td>/</td>
             <td>Read</td>
             <td>GET</td>
-            <td>List all pet businesses.</td>
-            <td>PASSED</td>
+            <td>List all pet businesses. | <br>
+            When a user click the logo or 'Home', 
+            all pet businesses are shown.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/</td>
             <td>Read</td>
             <td>GET</td>
-            <td>View details of a specific pet business.</td>
-            <td>PASSED</td>
+            <td>View details of a specific pet business. |<br>
+            When a user clicks on a business name, the details of 
+            that business are shown on a dedicated page.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/</td>
             <td>Create</td>
             <td>POST</td>
-            <td>Add a comment to a specific pet business.</td>
-            <td>PASSED</td>
+            <td>Add a comment to a specific pet business. |<br>
+            When a user registered as a pet owner visits a business page,
+            he can add a comment and submit it for approval 
+            by pressing the "submit" button.
+            </td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/edit_comment/&lt;int:comment_id&gt;/</td>
             <td>Read/Update</td>
             <td>GET, POST</td>
-            <td>Edit a specific comment.</td>
-            <td>PASSED</td>
+            <td>Edit a specific comment. |<br> 
+            When a user registered as a pet owner created a comment, he can 
+            edit by pressing the "edit" button, update, and submit it again 
+            for approval by pressin the submit button.         
+            </td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/delete_comment/&lt;int:comment_id&gt;/</td>
             <td>Delete</td>
             <td>POST</td>
-            <td>Delete a specific comment.</td>
-            <td>PASSED</td>
+            <td>Delete a specific comment. |<br>
+            When a user registered as a pet 
+            owner created a comment, he can delete it by pressing the "delete" 
+            button and confirm it on the popup by pressing the "delete" 
+            button again.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>/pet-business/&lt;int:pet_business_id&gt;/like/</td>
             <td>Create/Delete</td>
             <td>POST</td>
-            <td>Toggle "like" for a specific business.</td>
-            <td>PASSED</td>
+            <td>Toggle "like" for a specific business. |<br> 
+            When a user registered as a pet owner visits a business page, 
+            he can like or unlike it by clicking the 'Like' or 'Unlike' button. 
+            The total number of likes is updated automatically.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>/pet_business_form/</td>
             <td>Read/Create</td>
             <td>GET, POST</td>
-            <td>Display pet businesses user's businesses and form to add new ones.</td>
-            <td>PASSED</td>
+            <td>Display to business owners a form to add new ones. |<br> 
+            When a user registered as a business owner clicks on
+            'My Pet Companies' (menu), he is directed to a page where 
+            he can add new businesses by filling in the fields
+            and clicking 'Create Company'.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/edit/&lt;int:pet_business_id&gt;/</td>
             <td>Read/Update</td>
             <td>GET, POST</td>
-            <td>Edit a specific business.</td>
-            <td>PASSED</td>
+            <td>Edit a specific business. |<br>
+            When a user registered as a business owner clicks on
+            'My Pet Companies' (menu), he is directed to a page where he can edit 
+            by clicking the "edit" button his registred businesses and udpate 
+            them by clicking the "update compagny" button once the changes 
+            are made.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>&lt;slug:slug&gt;/delete/&lt;int:pet_business_id&gt;/</td>
             <td>Delete</td>
             <td>POST</td>
-            <td>Delete a specific business.</td>
-            <td>PASSED</td>
+            <td>Delete a specific business. |<br>
+            When a user registered as a business owner clicks on 
+            'My Pet Companies' (menu), he is directed to a page where he can 
+            delete it by pressing the "delete" button and confirm it on 
+            the popup by pressing the "delete" button again.</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>/signup/</td>
             <td>Create</td>
             <td>POST</td>
-            <td>Handle user signup and group assignment.</td>
-            <td>PASSED</td>
+            <td>Handle user signup and group assignment. |<br> 
+            When a user clicks on "Register" menu, he can enter his personal
+            information, choose to register as either a pet owner or a
+            business owner and click on the button "Sign Up".</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>/login/</td>
             <td>Create</td>
             <td>POST</td>
-            <td>Log in a user and obtain authentication tokens.</td>
-            <td>PASSED</td>
+            <td>Log in a user and obtain authentication tokens. |<br> 
+            When a user clicks on "Login" (menu), he can login by giving 
+            his credentials and clicking on the button "Sign In".</td>
+            <td>Behaved as expected</td>
         </tr>
         <tr>
             <td>/logout/</td>
             <td>Create</td>
             <td>POST</td>
-            <td>Log out a user and invalidate their authentication tokens.</td>
+            <td>Log out a user and invalidate their authentication tokens. |<br>
+            When a user clicks on "Logout" (menu), he can logout by clicking 
+            on the button "Sign Out".</td>
             <td>PASSED</td>
         </tr>
         <tr>
             <td>ADMIN feature</td>
             <td>CRUD</td>
             <td>GET POST</td>
-            <td>Full control on all datas</td>
-            <td>PASSED</td>
+            <td>Full control on all datas |<br> 
+            When an admin log in the back end (/admin) he can read, 
+            update and delete all datas.<br></td>
+            <td>Behaved as expected</td>
         </tr>
     </tbody>
 </table>
