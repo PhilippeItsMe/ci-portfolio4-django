@@ -61,13 +61,8 @@ class PetBusiness (models.Model):
     """
     firm = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
-    author = models.ForeignKey(
-    User,
-    on_delete=models.SET_NULL,
-    null=True,
-    blank=True,
-    related_name="pet_business_user"
-)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name="pet_business_user", default=1)
     street = models.CharField(max_length=255)
     number = models.CharField(max_length=8)
     npa = models.CharField(max_length=13)
